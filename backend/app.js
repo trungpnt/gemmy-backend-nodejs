@@ -5,18 +5,23 @@ const mongoose = require("mongoose");
 
 const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
+const classRoutes  = require("./routes/class")
+const labelRoutes = require("./routes/label")
+const studentLevelZeroRoutes = require("./routes/student_level_0")
+const studentLevelFirstRoutes = require("./routes/student_level_1")
+const studentLevelTwoRoutes = require("./routes/student_level_2")
+const specialDayRoutes = require("./routes/special_days")
+const accountRoutes = require("./routes/account")
 
 const app = express();
 
 mongoose
-  // .connect(
-  //   "mongodb+srv://max:" +
-  //     process.env.MONGO_ATLAS_PW +
-  //     "@cluster0-ntrwp.mongodb.net/node-angular"
-  // )
   .connect(
-    "mongodb://127.0.0.1:27017/Employee"
+    "mongodb+srv://Trung:CsCJzKHR1eCp48lb@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
   )
+//   .connect(
+//     "mongodb://127.0.0.1:27017/Gemmy"
+//   )
   .then(() => {
     console.log("Connected to database!");
   })
@@ -42,6 +47,22 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRoutes);
+
 app.use("/api/user", userRoutes);
+
+app.use("/api/class",classRoutes);
+
+app.use("/api/label",labelRoutes);
+
+app.use("/api/student-level-0",studentLevelZeroRoutes);
+
+app.use("/api/student-level-1",studentLevelFirstRoutes);
+
+app.use("/api/student-level-2",
+studentLevelTwoRoutes);
+
+app.use("/api/special-day",specialDayRoutes);
+
+app.use("/api/account",accountRoutes);
 
 module.exports = app;

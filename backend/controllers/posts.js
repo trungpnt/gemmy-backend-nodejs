@@ -58,10 +58,11 @@ exports.getPosts = (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const postQuery = Post.find();
-  let fetchedPosts;
+ 
   if (pageSize && currentPage) {
     postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
   }
+  let fetchedPosts;
   postQuery
     .then(documents => {
       fetchedPosts = documents;

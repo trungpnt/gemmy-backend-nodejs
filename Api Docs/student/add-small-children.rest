@@ -1,0 +1,11 @@
+POST 
+
+const url = "localhost:";
+
+POST {url}/student_small
+
+{
+    "is_young_buffalo" : 1,
+    
+}
+

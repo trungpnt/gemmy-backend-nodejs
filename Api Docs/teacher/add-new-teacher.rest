@@ -1,0 +1,55 @@
+Authentication : super-admin 
+Authorization: super-admin ( authorities )
+
+const url = "http://localhost:8080/teacher"
+
+POST url HTTP/1.1
+[
+    {
+        fullname: "",
+        dob : "",
+        phone: "",
+        email: "",
+        facebook: "",
+        username: "",
+        assigned_classes: 
+    }
+]
+
+GET url HTTP/1.1
+[
+    {
+        name: "",//
+        username: "",
+        password : "",
+        role: "",
+    }
+]
+
+DELETE url HTTP/1.1
+[
+    {
+        username: "",
+        password : "",
+        role: "",
+    }
+]
+
+PUT url HTTP/1.1
+[
+    {
+        username: "",
+        password : "",
+        role: "",
+    }
+]
+
+//update 1 phan 
+PATCH url HTTP/1.1
+[
+    {
+        userId: "ObjectId"
+        role: "",
+    }
+]
+

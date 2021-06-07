@@ -1,0 +1,49 @@
+POST 
+
+const url = "localhost:";
+
+POST {url}/potential-student
+{
+    "name" : "",
+    "phone" : "",
+    "test_date": "",
+    "contact_page_day":"",
+    "is_young_buffalo" : 1,
+    "DOB" : "",
+    "Occupation": "",
+
+    //optional
+    "result" : {
+        "listening" : "",
+        "writing" : "",
+        "speaking" : "",
+        "overall" : ""
+    }, 
+    "friend_student_id_list" :[
+        "ObjectIdabciaosjddw948092184",
+        "ObjectIdabciaosjddw948092184"
+    ]
+
+    //optional
+    "parent_info" : {
+        "name": "",
+        "role": "",
+        "phone": "",
+        "email":"",
+        "facebook":""
+    },
+    "free_day_list" :[
+        {
+            "day" : "monday",
+            "time": "7am-9am"
+        },
+        {
+            "day" : "monday",
+            "time": "7am-9am"
+        },
+    ],
+
+    "contacted" : 1,
+    "Notes" : "fewafawefewafwe" 
+}
+
