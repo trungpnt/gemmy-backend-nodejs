@@ -16,7 +16,6 @@ const url = "localhost:8080/label"
     }
 ]
 
-
 GET url HTTP/1.1
 [
     {

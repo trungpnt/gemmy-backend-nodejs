@@ -4,7 +4,6 @@ const LabelController = require("../controllers/label");
 
 const checkAuth = require("../middleware/check-auth");
 const extractFile = require("../middleware/file");
-
 const router = express.Router();
 
 router.post("",  LabelController.createLabel);
