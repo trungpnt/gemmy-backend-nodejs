@@ -2,41 +2,44 @@ const Label = require("../models/label");
 
 exports.createLabel = (req, res, next) => {
 
-    const label = new Label({
-        label_name: req.body.label_name,
-        description: req.body.description,
-        //creator: req.userData.userId
-    });
+    const all_labels_added = [];
+    for(var i = 0; i < req.body.length; i++) {
 
-
-    Label.findOne({ label_name: req.body.label_name })
-        .then(result => {
-            if (result) {
-                res.status(200).json({ message: "The label with the same name already exists !" });
-            } else {
-                label
-                    .save()
-                    .then(createdLabel => {
-                        res.status(201).json({
-                            message: "Label added successfully",
-                            label: {
-                                ...createdLabel,
-                                id: createdLabel._id
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        res.status(500).json({
-                            message: "Creating a label failed!"
-                        });
-                    });
-            }
-        })
-        .catch(error => {
-            res.status(500).json({
-                message: "Please check your inputs and try again!"
-            });
+        const label = new Label({
+            label_name: req.body[i].label_name,
+            description: req.body[i].description,
+            //creator: req.userData.userId
         });
+        
+        Label.findOne({ label_name: label.label_name })
+            .then(result => {   
+                if (result) {
+                    res.status(200).json({ message: "The label with the same name already exists !" });
+                } else {
+                    label
+                        .save()
+                        .then(createdLabel => {
+                            res.status(201).json({
+                                message: "Label added successfully",
+                                label: {
+                                    id: createdLabel._id,
+                                    label_name: createdLabel.label_name
+                                }
+                            });
+                        })
+                        .catch(error => {
+                            res.status(500).json({
+                                message: "Creating a label failed!"
+                            });
+                        });
+                }
+            })
+            .catch(error => {
+                res.status(500).json({
+                    message: "Please check your inputs and try again!"
+                });
+            });
+    }
 }
 
 exports.updateLabel = (req, res, next) => {
