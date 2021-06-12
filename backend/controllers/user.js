@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const User = require("../models/user");
 
 exports.createUser = (req, res, next) => {
@@ -43,6 +42,7 @@ exports.userLogin = (req, res, next) => {
           message: "Auth failed"
         });
       }
+      //add more logic for admin_role
       const token = jwt.sign(
         { email: fetchedUser.email, userId: fetchedUser._id },
         process.env.JWT_KEY,

@@ -1,15 +1,19 @@
 const Label = require("../models/label");
+const objectMapper = require('object-mapper');
+const merge = require('deepmerge')
 
 exports.createLabel = (req, res, next) => {
-
+    
     const all_labels_added = [];
+    
     for(var i = 0; i < req.body.length; i++) {
-
-        const label = new Label({
-            label_name: req.body[i].label_name,
-            description: req.body[i].description,
-            //creator: req.userData.userId
-        });
+        
+        const label = merge(req.body[i], Label.class )
+        // const label = new Label({
+        //     label_name: req.body[i].label_name,
+        //     description: req.body[i].description,
+        //     //creator: req.userData.userId
+        // });
         
         Label.findOne({ label_name: label.label_name })
             .then(result => {   
@@ -40,6 +44,7 @@ exports.createLabel = (req, res, next) => {
                 });
             });
     }
+
 }
 
 exports.updateLabel = (req, res, next) => {

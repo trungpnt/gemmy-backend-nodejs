@@ -1,12 +1,44 @@
 const StudentLevelZero = require("../models/student_level_0");
 
+
 exports.createStudentLevelZero = (req, res, next) => {
   //const url = req.protocol + "://" + req.get("host");
   const StudentLevelZero = new StudentLevelZero({
     full_name: req.body.full_name,
     phone_number: req.body.phone_number,
-    test_date: req.file.test_date,
-    //creator: req.userData.userId
+    test_date: req.body.test_date,
+    contact_page_day: req.body.full_name,
+    is_young_buffalo : req.body.full_name,
+    dob: req.body.full_name,
+    occupation: req.body.full_name,
+    test_time:"",
+    //optional 
+    friend_student_id_list : [
+        "ObjectIdabciaosjddw948092184",
+        "ObjectIdabciaosjddw948092184"
+    ],
+
+    //optional
+    parent_info : {
+        name: "",
+        role: "",
+        phone: "",
+        email:"",
+        facebook:""
+    },
+    free_days_list :[
+        {
+            day : "monday",
+            time: "7am-9am"
+        },
+        {
+            day : "monday",
+            time: "7am-9am"
+        },
+    ],
+    is_returning_student: 1,
+    is_reminded: 1,
+    notes : "fewafawefewafwe" 
     
   });
   StudentLevelZero
