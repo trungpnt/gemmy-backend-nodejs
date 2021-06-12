@@ -3,14 +3,16 @@ const Class = require("../models/Class");
 exports.createClass = (req, res, next) => {
   const Class = new Class({
     class_name: req.body.class_name,
-    label_id: req.body.label_id,
-    level_id : req.body.level_id,
+    label_name: req.body.label_name,
+    level_name : req.body.level_name,
     slots: req.body.slots,
     number_of_sessions: req.body.slots,
     date_start: req.body.date_start,
-    date_start: req.body.date_end,
+    
+    //date_start: req.body.date_end,
     note: req.body.note,
-    status_name : req.body.status_name,
+    is_active : req.body.is_active,
+    //
     class_session: req.body.class_session,
     student_list: req.body.student_list
     //creator: req.userData.userId

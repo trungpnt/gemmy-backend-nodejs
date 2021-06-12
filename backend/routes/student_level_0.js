@@ -7,14 +7,14 @@ const extractFile = require("../middleware/file");
 
 const router = express.Router();
 
-router.post("", checkAuth, extractFile, StudentLevelZeroController.createStudentLevelZero);
+router.post("", StudentLevelZeroController.createStudentLevelZero);
 
-router.put("/:id", checkAuth, extractFile, StudentLevelZeroController.updateStudentLevelZero);
+router.put("/:id",  StudentLevelZeroController.updateStudentLevelZero);
 
 router.get("", StudentLevelZeroController.getStudentLevelZeros);
 
 router.get("/:id", StudentLevelZeroController.getStudentLevelZero);
 
-router.delete("/:id", checkAuth, StudentLevelZeroController.deleteStudentLevelZero);
+router.delete("/:id", StudentLevelZeroController.deleteStudentLevelZero);
 
 module.exports = router;

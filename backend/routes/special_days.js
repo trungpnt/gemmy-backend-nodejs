@@ -7,14 +7,14 @@ const extractFile = require("../middleware/file");
 
 const router = express.Router();
 
-router.post("", checkAuth, SpecialDaysController.createSpecialDays);
+router.post("", SpecialDaysController.createSpecialDays);
 
-router.put("/:id", checkAuth,SpecialDaysController.updateSpecialDays);
+router.put("/:id",SpecialDaysController.updateSpecialDays);
 
 router.get("", SpecialDaysController.getSpecialDays);
 
 router.get("/:id", SpecialDaysController.getSpecialDays);
 
-router.delete("/:id", checkAuth, SpecialDaysController.deleteSpecialDays);
+router.delete("/:id", SpecialDaysController.deleteSpecialDays);
 
 module.exports = router;

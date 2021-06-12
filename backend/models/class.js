@@ -18,16 +18,22 @@ const classSessionSchema = new mongoose.Schema({
 
 const classSchema = mongoose.Schema({
   class_name: { type: String, required: true },
+  //functionize this class code
+  /*năm(21)+45(level)+Mar(tháng hiện tại)+A(label)+preIelts(className) => 2145MARApreIelts
+năm hiện tại,2 số đầu, tháng ( init 1st time only ), label_name,className
+backend */
   class_code: { type: String, required: true },
-  label_id: { type: String, required: true },
+  label_name: { type: String, required: true },
+  level_name: { type: String, required: true },
   //
-  creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+//   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   //
   slots : { type: String, required: true },
   number_of_sessions: { type: String, required: true },
   date_start: { type: Date, required: true },
+  //remember to calculate
   date_end: { type: Date, required: true },
-  status_name: { type: Boolean, required: true }, 
+  status_name: { type: Boolean, required: true },
 
   class_session: [classSessionSchema],
   student_list: [studentSchema]

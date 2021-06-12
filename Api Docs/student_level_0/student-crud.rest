@@ -8,7 +8,48 @@ POST {url}/potential-student
     "phone_number" : "",
     "test_date": "",
     "contact_page_day":"",
-    "is_young_buffalo" : 1,
+    //"is_young_buffalo" : 1, => backend handles
+    "dob" : "",
+    "occupation": "small children",
+    "test_time":"",
+    //optional 
+    "friend_student_id_list" :[
+        "student_id": "ObjectIdabciaosjddw948092184",
+        "student_id":
+        "ObjectIdabciaosjddw948092184"
+    ]
+
+    //optional
+    "parent_info" : {
+        "name": "",
+        "role": "",
+        "phone": "",
+        "email":"",
+        "facebook":""
+    },
+    "free_days_list" :[
+        {
+            "day" : "monday",
+            "time": "7am-9am"
+        },
+        {
+            "day" : "monday",
+            "time": "7am-9am"
+        },
+    ],
+    "is_returning_student": 1,
+    "is_reminded" : 1,
+    "notes" : "fewafawefewafwe" 
+}
+
+UPDATE {url}/potential-student
+{
+    "id" : "fejofiaewio"
+    "full_name" : "",
+    "phone_number" : "",
+    "test_date": "",
+    "contact_page_day":"",
+    //"is_young_buffalo" : 1, => backend handles
     "dob" : "",
     "occupation": "small children",
     "test_time":"",

@@ -61,7 +61,7 @@ app.use("/api/student-level-1",studentLevelFirstRoutes);
 app.use("/api/student-level-2",
 studentLevelTwoRoutes);
 
-app.use("/api/special-day",specialDayRoutes);
+app.use("/api/special-days",specialDayRoutes);
 
 app.use("/api/account",accountRoutes);
 

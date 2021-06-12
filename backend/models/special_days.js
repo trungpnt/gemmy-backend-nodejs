@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const specialDaysSchema = mongoose.Schema({
   date: { type: Date, required: true },
-  reason: {type: String}
+  reason: {type: String, require: true}
 });
 
 module.exports = mongoose.model("SpecialDays", specialDaysSchema);
