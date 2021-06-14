@@ -2,8 +2,6 @@ const Class = require("../models/Class");
 
 function genClassCode(class_level, class_label, class_name) {
     var today = new Date();
-
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     //2145MARApreIelts
     var year_digit = today.getFullYear().toString().substr(2, 2);
     var month = today.toLocaleString('default', { month: 'short' }).toUpperCase();
@@ -12,10 +10,9 @@ function genClassCode(class_level, class_label, class_name) {
 
 exports.createClass = (req, res, next) => {
     
-    var class_name = req.body.class_name;
-    var class_code = genClassCode(class_level,class_label,class_name);
+    var class_code = genClassCode ( req.body.class_level ,req.body.class_label, req.body.class_name);
 
-    const Class = new Class({
+    const classModel = new Class({
         class_name: req.body.class_name,
         class_code : class_code,
         slots: req.body.slots,
@@ -29,12 +26,12 @@ exports.createClass = (req, res, next) => {
         student_list: req.body.student_list
         //creator: req.userData.userId
     });
-    Class
+    classModel
         .save()
         .then(createdClass => {
             res.status(201).json({
                 message: "Class added successfully",
-                Class: {
+                class: {
                     ...createdClass,
                     id: createdClass._id
                 }
@@ -53,14 +50,14 @@ exports.updateClass = (req, res, next) => {
         const url = req.protocol + "://" + req.get("host");
         imagePath = url + "/images/" + req.file.filename;
     }
-    const Class = new Class({
+    const classModel = new Class({
         _id: req.body.id,
         title: req.body.title,
         content: req.body.content,
         imagePath: imagePath,
         creator: req.userData.userId
     });
-    Class.updateOne({ _id: req.params.id, creator: req.userData.userId }, Class)
+    classModel.updateOne({ _id: req.params.id, creator: req.userData.userId }, classModel)
         .then(result => {
             if (result.n > 0) {
                 res.status(200).json({ message: "Update successful!" });
@@ -92,7 +89,7 @@ exports.getClass = (req, res, next) => {
         .then(count => {
             res.status(200).json({
                 message: "Class fetched successfully!",
-                Class: fetchedClass,
+                class: fetchedClass,
                 maxClass: count
             });
         })
@@ -106,9 +103,9 @@ exports.getClass = (req, res, next) => {
 exports.getClass = (req, res, next) => {
 
     Class.findById(req.params.id)
-        .then(Class => {
-            if (Class) {
-                res.status(200).json(Class);
+        .then(class_found => {
+            if (class_found) {
+                res.status(200).json(class_found);
             } else {
                 res.status(404).json({ message: "Class not found!" });
             }
