@@ -23,8 +23,6 @@ const classSchema = mongoose.Schema({
 năm hiện tại,2 số đầu, tháng ( init 1st time only ), label_name,className
 backend */
   class_code: { type: String, required: true },
-  label_name: { type: String, required: true },
-  level_name: { type: String, required: true },
   //
 //   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   //

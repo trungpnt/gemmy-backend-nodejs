@@ -2,17 +2,17 @@ const URL = "localhost:";
 
 POST url HTTP/1.1
 {
-    "class_name" : "pre ielts",
+    class_name: "pre ielts",
     //"class_code":"",
-    "label_name":"",
-    "level_name" : "",
-    "slots": "",
-    "number_of_sessions":"",
-    "date_start":"",
+    label_name:"A",
+    level_name: "45",
+    slots: "",
+    number_of_sessions:"",
+    date_start:"",
     //"date_end": "",
-    "note": "",
-    "is_active": "True",
-    "class_session": [
+    note: "",
+    is_active: "True",
+    class_session: [
             {
                 day: "Monday",
                 time range: "7:00 to 9:00"
@@ -22,16 +22,16 @@ POST url HTTP/1.1
                 time range: "7:00 to 9:00"
             }
         ],
-    "student_list" :[
+    student_list :[
         {
-            "student_id" : "foeiwafoibwea",
-            "dob" :"",
-            "contact info": "",
-            "test_date" : "",
-            "class_level_enrolled": "",
-            "discount_code" : "",
-            "tuition_fee" : 2.000.000,
-            "notes" : "da lien he phu huynh"
+            student_id : "foeiwafoibwea",
+            dob :"",
+            contact info: "",
+            test_date : "",
+            class_level_enrolled: "",
+            discount_code : "",
+            tuition_fee : 2.000.000,
+            notes : "da lien he phu huynh"
         },
     ]
 }

@@ -3,8 +3,9 @@ const StudentLevelZero = require("../models/student_level_0");
 exports.createStudentLevelZero = (req, res, next) => {
 
     var parent_info = null;
-    var friend_student_id_list = null;
+    var friend_student_id_list = [];
     var is_under_care = false;
+
     if (req.body.parent_info != null){
         parent_info = req.body.parent_info;
         is_under_care = true;
@@ -15,31 +16,27 @@ exports.createStudentLevelZero = (req, res, next) => {
     }
 
     const studentLevelZero = new StudentLevelZero({
-        
         full_name: req.body.full_name,
         phone_number: req.body.phone_number,
-        test_date: req.body.test_date,
         contact_page_day: req.body.contact_page_day,
-        is_under_care: is_under_care,
+        test_date: req.body.test_date,
         dob: req.body.dob,
-        occupation: req.body.occupation,
         test_time: req.body.test_time,
-        //optional 
-        friend_student_id_list: friend_student_id_list,
-
-        //optional
-        parent_info: parent_info,
-
-        free_days_list: req.body.free_days_list,
+        occupation: req.body.occupation,
         is_returning_student: req.body.is_returning_student,
         is_reminded: req.body.is_reminded,
-        notes: req.body.notes
-
+        notes: req.body.notes,
+        is_under_care: is_under_care,
+        //optional 
+        friend_student_id_list: friend_student_id_list,
+        //optional
+        parent_info: parent_info,
+        free_days_list: req.body.free_days_list,
     });
-
+    
     studentLevelZero
         .save()
-        .then(createdStudentLevelZero => {
+        .then( createdStudentLevelZero => {
             res.status(201).json({
                 message: "StudentLevelZero added successfully",
                 student_level_zero: {

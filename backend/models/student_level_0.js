@@ -24,15 +24,14 @@ const studentLevelZeroSchema = mongoose.Schema({
   //
 //   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   //
-
   test_date: { type: Date, required: true },
   dob: { type: Date, required: true},
   test_time: { type: String, required: true },
   
   occupation: { type: String, required: true },
-  is_returning: { type: Boolean },
+  is_returning: { type: Boolean, required : true },
   is_reminded: { type: Boolean },
-  notes: { type: String, required: true },
+  notes: { type: String, required: false },
   is_under_care : {type: Boolean},
 
   friend_student_id_list: [friends],

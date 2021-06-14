@@ -50,19 +50,19 @@ app.use("/api/posts", postsRoutes);
 
 app.use("/api/user", userRoutes);
 
-app.use("/api/class",classRoutes);
+app.use("/api/class", classRoutes);
 
-app.use("/api/label",labelRoutes);
+app.use("/api/label", labelRoutes);
 
-app.use("/api/student-level-0",studentLevelZeroRoutes);
+app.use("/api/student-level-0", studentLevelZeroRoutes);
 
-app.use("/api/student-level-1",studentLevelFirstRoutes);
+app.use("/api/student-level-1", studentLevelFirstRoutes);
 
 app.use("/api/student-level-2",
 studentLevelTwoRoutes);
 
-app.use("/api/special-days",specialDayRoutes);
+app.use("/api/special-days", specialDayRoutes);
 
-app.use("/api/account",accountRoutes);
+app.use("/api/account", accountRoutes);
 
 module.exports = app;

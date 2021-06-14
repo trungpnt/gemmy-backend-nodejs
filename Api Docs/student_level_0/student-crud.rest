@@ -4,22 +4,19 @@ const url = "localhost:";
 
 POST {url}/potential-student
 {
-    "full_name" : "",
-    "phone_number" : "",
-    "test_date": "",
-    "contact_page_day":"",
-    //"is_young_buffalo" : 1, => backend handles
-    "dob" : "",
-    "occupation": "small children",
-    "test_time":"",
-    //optional 
+   "full_name" : "pham nguyen tan trung",
+    "phone_number" : "01231240128",
+    "test_date": "25/12/2021",
+    "contact_page_day":"17/06/2010",
+    "dob" : "06/05/1995",
+    "occupation": "student",
+    "test_time":"7AM-9AM",
+    
     "friend_student_id_list" :[
-        "student_id": "ObjectIdabciaosjddw948092184",
-        "student_id":
-        "ObjectIdabciaosjddw948092184"
-    ]
+        {"student_id": "ObjectIdabciaosjddw948092184"},
+        {"student_id": "ObjectIdabciaosjddw948092184"}
+    ],
 
-    //optional
     "parent_info" : {
         "name": "",
         "role": "",
@@ -35,11 +32,11 @@ POST {url}/potential-student
         {
             "day" : "monday",
             "time": "7am-9am"
-        },
+        }
     ],
-    "is_returning_student": 1,
+    "is_returning_student": 0,
     "is_reminded" : 1,
-    "notes" : "fewafawefewafwe" 
+    "notes" : "this is good" 
 }
 
 UPDATE {url}/potential-student
