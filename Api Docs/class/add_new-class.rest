@@ -2,36 +2,36 @@ const URL = "localhost:";
 
 POST url HTTP/1.1
 {
-    class_name: "pre ielts",
-    label_name:"A",
-    level_name: "45",
-    slots: "19",
-    number_of_sessions:"33",
-    date_start:"06/05/1995",
-    is_active: 1,
-    class_session: [
+    "class_name": "pre ielts",
+    "label_name": "A",
+    "level_name": "45",
+    "slots": "19",
+    "number_of_sessions":"33",
+    "date_start":"06/05/1995",
+    "is_active": 1,
+    "class_session": [
             {
-                day: "Monday",
-                time range: "7:00 to 9:00"
+                "day": "Monday",
+                "time range": "7:00 to 9:00"
             },
             {
-                day: "Thursday",
-                time range: "7:00 to 9:00"
+                "day": "Thursday",
+                "time range": "7:00 to 9:00"
             }
         ],
-    student_list :[
+    "student_list" :[
         {
-            student_id : "foeiwafoibwea",
-            dob :"22/02/2002",
-            contact info: "",
-            test_date : "",
-            class_level_enrolled: "",
-            discount_code : "",
-            tuition_fee : 2.000.000,
-            notes : "da lien he phu huynh"
+            "student_id" : "foeiwafoibwea",
+            "dob" :"22/02/2002",
+            "contact info": "",
+            "test_date" : "",
+            "class_level_enrolled": "",
+            "discount_code" : "",
+            "tuition_fee" : 2.000.000,
+            "student_notes" : "da lien he phu huynh"
         },
     ],
-     note: "this is a new class",
+     "class_notes": "this is a new class",
 }
 
 UPDATE url HTTP/1.1
