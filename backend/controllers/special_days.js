@@ -13,7 +13,7 @@ exports.createSpecialDays = (req, res, next) => {
                 res.status(201).json({
                     message: "special days added successfully",
                     special_days: {
-                        // ...createdSpecialDays,
+                        special_days_created : createdSpecialDays,
                         id: createdSpecialDays._id
                     }
                 });

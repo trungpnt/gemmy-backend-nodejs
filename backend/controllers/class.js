@@ -8,44 +8,28 @@ function genClassCode(class_level, class_label, class_name) {
     return "".concat(year_digit, class_level, month, class_label, class_name);
 }
 
+function getEndDate(){
+    
+}
+
 exports.createClass = (req, res, next) => {
 
     var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
 
-    var classModel = null;
-    try {
-        classModel = new Class({
-            class_name: req.body.class_name,
-            class_code: class_code,
-            slots: req.body.slots,
-            tuition_fee: req.body.tuition_fee,
-            total_sessions: req.body.total_sessions,
-            date_start: req.body.date_start,
-            date_end: "06/05/1990",
-            note: req.body.note,
-            is_active: req.body.is_active,  
-            //the problem starts here!    
-            class_session: req.body.class_session,
-            student_list: req.body.student_list
-            // creator: req.userData.userId
-        });
-    }
-    catch (error) {
-        res.status(502).json({
-            message: "Class model failed to create"
-        });
-    };
-
-    // const classModel = new Class({
-    //     class_name: "the hell nigga",
-    //     class_code : "fewajofiwe",
-    //     slots: 50,
-    //     tuition_fee : 200000,
-    //     total_sessions: 500,
-    //     date_start : "06-05-1995",
-    //     date_end: "06-05-1995",
-    //     is_active: 1,
-    // });
+    classModel = new Class({
+        class_name: req.body.class_name,
+        class_code: class_code,
+        slots: req.body.slots,
+        tuition_fee: req.body.tuition_fee,
+        total_sessions: req.body.total_sessions,
+        date_start: req.body.date_start,
+        date_end: "06/05/1990",
+        note: req.body.note,
+        is_active: req.body.is_active,  
+        //the problem starts here!    
+        class_session: req.body.class_session,
+        //student_list: req.body.student_list
+    });
 
     classModel
         .save()
@@ -53,7 +37,7 @@ exports.createClass = (req, res, next) => {
             res.status(201).json({
                 message: "Class added successfully",
                 class: {
-                    ...createdClass,
+                    created_class: createdClass,
                     id: createdClass._id
                 }
             });

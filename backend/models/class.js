@@ -5,16 +5,18 @@ const studentSchema = new mongoose.Schema({
     dob: Date,
     contact_info: String,
     test_date: Date,
+    initial_test_result: String,
     class_level_enrolled: String, //class code,
     discount_code: String,
-    tuition_fee: Number,
+    amount_paid: Number,
+    amount_remaining: Number,
     student_notes: String
 });
 
 const classSessionSchema = new mongoose.Schema({
     day: String,
     time_range: String
-})
+});
 
 const classSchema = mongoose.Schema({
 
