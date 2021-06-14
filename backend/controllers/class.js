@@ -8,46 +8,55 @@ function genClassCode(class_level, class_label, class_name) {
     return "".concat(year_digit, class_level, month, class_label, class_name);
 }
 
-function getEndDate(){
-    
+function getEndDate(total_sessions,start_date) {
+
 }
 
 exports.createClass = (req, res, next) => {
 
     var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
 
-    classModel = new Class({
-        class_name: req.body.class_name,
-        class_code: class_code,
-        slots: req.body.slots,
-        tuition_fee: req.body.tuition_fee,
-        total_sessions: req.body.total_sessions,
-        date_start: req.body.date_start,
-        date_end: "06/05/1990",
-        note: req.body.note,
-        is_active: req.body.is_active,  
-        //the problem starts here!    
-        class_session: req.body.class_session,
-        //student_list: req.body.student_list
-    });
-
-    classModel
-        .save()
-        .then(createdClass => {
-            res.status(201).json({
-                message: "Class added successfully",
-                class: {
-                    created_class: createdClass,
-                    id: createdClass._id
-                }
-            });
+    Class.findOne({ class_code: class_code })
+        .then(result => {
+            if (result) {
+                res.status(200).json({ message: "The class_code with the same name already exists !" });
+            } else {
+                classModel = new Class({
+                    class_name: req.body.class_name,
+                    class_code: class_code,
+                    slots: req.body.slots,
+                    tuition_fee: req.body.tuition_fee,
+                    total_sessions: req.body.total_sessions,
+                    date_start: req.body.date_start,
+                    date_end: "06/05/1990",
+                    note: req.body.note,
+                    is_active: req.body.is_active,  
+                    //the problem starts here!    
+                    class_session: req.body.class_session,
+                    student_list: req.body.student_list
+                });
+                classModel
+                    .save()
+                    .then(createdClass => {
+                        res.status(201).json({
+                            message: "Class added successfully",
+                            created_class: createdClass
+                        });
+                    })
+                    .catch(error => {
+                        res.status(500).json({
+                            message: "Creating a class failed!"
+                        });
+                    });
+            }
         })
         .catch(error => {
-            res.status(500).json({
-                message: "Creating a Class failed!"
+            res.status(501).json({
+                message: "Please check your inputs and try again!"
             });
         });
-};
+}
+
 
 exports.updateClass = (req, res, next) => {
     let imagePath = req.body.imagePath;
