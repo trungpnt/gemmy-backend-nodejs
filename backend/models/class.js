@@ -26,6 +26,7 @@ const classSchema = mongoose.Schema({
     //
     //   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     //
+    tuition_fee: {type: Number, required: true},
     slots: { type: String, required: true },
     number_of_sessions: { type: String, required: true },
     date_start: { type: Date, required: true },

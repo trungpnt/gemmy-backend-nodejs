@@ -8,6 +8,7 @@ POST url HTTP/1.1
     "slots": "19",
     "number_of_sessions":"33",
     "date_start":"06/05/1995",
+    "tuition_fee" : 2000000,
     "is_active": 1,
     "class_session": [
             {
@@ -26,8 +27,9 @@ POST url HTTP/1.1
             "contact info": "",
             "test_date" : "",
             "class_level_enrolled": "",
-            "discount_code" : "",
-            "tuition_fee" : 2.000.000,
+            "discount_code" : "AKB48",
+            "discount_description": "5% applied",
+            "amount_paid" : 2000000,
             "student_notes" : "da lien he phu huynh"
         },
     ],
