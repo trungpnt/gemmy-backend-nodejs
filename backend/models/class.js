@@ -7,7 +7,7 @@ const studentSchema = new mongoose.Schema({
     test_date: Date,
     class_level_enrolled: String, //class code,
     discount_code: String,
-    tuition_fee: String,
+    tuition_fee: Number,
     student_notes: String
 });
 
@@ -38,6 +38,5 @@ const classSchema = mongoose.Schema({
     student_list: [studentSchema],
     class_note : {type: String, required: false}
 });
-
 
 module.exports = mongoose.model("Class", classSchema);

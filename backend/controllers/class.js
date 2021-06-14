@@ -1,4 +1,4 @@
-const Class = require("../models/Class");
+const Class = require("../models/class");
 
 function genClassCode(class_level, class_label, class_name) {
     var today = new Date();

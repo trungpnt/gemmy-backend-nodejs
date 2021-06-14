@@ -33,7 +33,7 @@ exports.createStudentLevelZero = (req, res, next) => {
         parent_info: parent_info,
         free_days_list: req.body.free_days_list,
     });
-    
+
     studentLevelZero
         .save()
         .then( createdStudentLevelZero => {
