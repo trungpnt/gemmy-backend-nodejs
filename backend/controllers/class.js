@@ -18,7 +18,7 @@ exports.createClass = (req, res, next) => {
         slots: req.body.slots,
         number_of_sessions: req.body.number_of_sessions,
         date_start: req.body.date_start,
-        date_end: '06/05/1990',
+        date_end: "06/05/1990",
         note: req.body.note,
         is_active: req.body.is_active,
         //

@@ -17,17 +17,12 @@ const classSessionSchema = new mongoose.Schema({
 })
 
 const classSchema = mongoose.Schema({
+
     class_name: { type: String, required: true },
-    //functionize this class code
-    /*năm(21)+45(level)+Mar(tháng hiện tại)+A(label)+preIelts(className) => 2145MARApreIelts
-  năm hiện tại,2 số đầu, tháng ( init 1st time only ), label_name,className
-  backend */
     class_code: { type: String, required: true },
-    //
     //   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    //
     tuition_fee: {type: Number, required: true},
-    slots: { type: String, required: true },
+    slots: { type: Number, required: true },
     number_of_sessions: { type: Number, required: true },
     date_start: { type: Date, required: true },
     //remember to calculate

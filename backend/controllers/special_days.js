@@ -24,7 +24,6 @@ exports.createSpecialDays = (req, res, next) => {
                 });
             });
     }
-    
 };
 
 exports.updateSpecialDays = (req, res, next) => {
