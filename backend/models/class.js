@@ -21,9 +21,9 @@ const classSchema = mongoose.Schema({
     class_name: { type: String, required: true },
     class_code: { type: String, required: true },
     //   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    tuition_fee: {type: Number, required: true},
+    tuition_fee: { type: Number, required: true },
     slots: { type: Number, required: true },
-    number_of_sessions: { type: Number, required: true },
+    total_sessions: { type: Number, required: true },
     date_start: { type: Date, required: true },
     //remember to calculate
     date_end: { type: Date, required: true },
@@ -31,7 +31,7 @@ const classSchema = mongoose.Schema({
 
     class_session: [classSessionSchema],
     student_list: [studentSchema],
-    class_note : {type: String, required: false}
+    class_note: { type: String, required: false }
 });
 
 module.exports = mongoose.model("Class", classSchema);
