@@ -11,10 +11,8 @@ function genClassCode(class_level, class_label, class_name) {
 }
 
 exports.createClass = (req, res, next) => {
-    var class_label = req.body.level;
-    var class_level = req.body.level;
+    
     var class_name = req.body.class_name;
-
     var class_code = genClassCode(class_level,class_label,class_name);
 
     const Class = new Class({
@@ -23,8 +21,7 @@ exports.createClass = (req, res, next) => {
         slots: req.body.slots,
         number_of_sessions: req.body.slots,
         date_start: req.body.date_start,
-
-        //date_start: req.body.date_end,
+        date_start: '06/05/1990',
         note: req.body.note,
         is_active: req.body.is_active,
         //

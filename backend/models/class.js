@@ -31,7 +31,7 @@ backend */
   date_start: { type: Date, required: true },
   //remember to calculate
   date_end: { type: Date, required: true },
-  status_name: { type: Boolean, required: true },
+  is_active: { type: Boolean, required: true },
 
   class_session: [classSessionSchema],
   student_list: [studentSchema]

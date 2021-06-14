@@ -7,7 +7,7 @@ const extractFile = require("../middleware/file");
 
 const router = express.Router();
 
-router.post("", checkAuth, ClassController.createClass);
+router.post("", /*checkAuth*/ ClassController.createClass);
 
 router.put("/:id", checkAuth, ClassController.updateClass);
 

@@ -3,15 +3,12 @@ const URL = "localhost:";
 POST url HTTP/1.1
 {
     class_name: "pre ielts",
-    //"class_code":"",
     label_name:"A",
     level_name: "45",
-    slots: "",
-    number_of_sessions:"",
-    date_start:"",
-    //"date_end": "",
-    note: "",
-    is_active: "True",
+    slots: "19",
+    number_of_sessions:"33",
+    date_start:"06/05/1995",
+    is_active: 1,
     class_session: [
             {
                 day: "Monday",
@@ -25,7 +22,7 @@ POST url HTTP/1.1
     student_list :[
         {
             student_id : "foeiwafoibwea",
-            dob :"",
+            dob :"22/02/2002",
             contact info: "",
             test_date : "",
             class_level_enrolled: "",
@@ -33,7 +30,8 @@ POST url HTTP/1.1
             tuition_fee : 2.000.000,
             notes : "da lien he phu huynh"
         },
-    ]
+    ],
+     note: "this is a new class",
 }
 
 UPDATE url HTTP/1.1
