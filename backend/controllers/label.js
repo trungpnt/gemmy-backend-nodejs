@@ -1,6 +1,4 @@
 const Label = require("../models/label");
-const objectMapper = require('object-mapper');
-const merge = require('deepmerge')
 
 exports.createLabel = (req, res, next) => {
     
@@ -9,7 +7,6 @@ exports.createLabel = (req, res, next) => {
         const label = new Label({
             label_name: req.body[i].label_name,
             description: req.body[i].description,
-            //creator: req.userData.userId
         });
         
         Label.findOne({ label_name: label.label_name })
@@ -36,7 +33,7 @@ exports.createLabel = (req, res, next) => {
                 }
             })
             .catch(error => {
-                res.status(500).json({
+                res.status(501).json({
                     message: "Please check your inputs and try again!"
                 });
             });

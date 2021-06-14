@@ -13,7 +13,7 @@ router.put("/:id",SpecialDaysController.updateSpecialDays);
 
 router.get("", SpecialDaysController.getSpecialDays);
 
-router.get("/:id", SpecialDaysController.getSpecialDays);
+router.get("/:id", SpecialDaysController.getSpecialDayById);
 
 router.delete("/:id", SpecialDaysController.deleteSpecialDays);
 

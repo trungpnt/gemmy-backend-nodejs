@@ -1,4 +1,4 @@
-const SpecialDays = require("../models/student_level_0");
+const SpecialDays = require("../models/special_days");
 
 exports.createSpecialDays = (req, res, next) => {
 
@@ -12,7 +12,7 @@ exports.createSpecialDays = (req, res, next) => {
             .then(createdSpecialDays => {
                 res.status(201).json({
                     message: "special days added successfully",
-                    studen_tlevel_zero: {
+                    special_days: {
                         ...createdSpecialDays,
                         id: createdSpecialDays._id
                     }
@@ -52,21 +52,21 @@ exports.updateSpecialDays = (req, res, next) => {
 exports.getSpecialDays = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
-    const specialdaysQuery = SpecialDays.find();
+    const specialDaysQuery = SpecialDays.find();
 
     if (pageSize && currentPage) {
         specialDaysQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
     }
-    let fetchedSpecialDayss;
+    let fetchedSpecialDays;
     specialDaysQuery
         .then(documents => {
-            fetchedSpecialDayss = documents;
+            fetchedSpecialDays = documents;
             return SpecialDays.count();
         })
         .then(count => {
             res.status(200).json({
-                message: "SpecialDayss fetched successfully!",
-                special_days: fetchedSpecialDayss,
+                message: "SpecialDays fetched successfully!",
+                special_days: fetchedSpecialDays,
                 max_special_days: count
             });
         })
@@ -77,7 +77,7 @@ exports.getSpecialDays = (req, res, next) => {
         });
 };
 
-exports.getSpecialDays = (req, res, next) => {
+exports.getSpecialDayById = (req, res, next) => {
     SpecialDays.findById(req.params.id)
         .then(specialDays => {
             if (specialDays) {
