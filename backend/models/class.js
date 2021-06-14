@@ -28,7 +28,7 @@ const classSchema = mongoose.Schema({
     //
     tuition_fee: {type: Number, required: true},
     slots: { type: String, required: true },
-    number_of_sessions: { type: String, required: true },
+    number_of_sessions: { type: Number, required: true },
     date_start: { type: Date, required: true },
     //remember to calculate
     date_end: { type: Date, required: true },
