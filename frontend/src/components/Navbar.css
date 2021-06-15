@@ -15,7 +15,7 @@
 .nav-menu   {
     background-color: black;
     width: 250px;
-    height: 100px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     position: fixed;
