@@ -20,7 +20,7 @@
     justify-content: center;
     position: fixed;
     top: 0;
-    /* left: -100%; */
+    left: -100%;
     transition: 850ms;   
 }
 
@@ -52,6 +52,8 @@
 
 .nav-text a:hover{
     background-color: blue;
+    width: auto;
+    height: auto;
 }
 
 .nav-menu-items {

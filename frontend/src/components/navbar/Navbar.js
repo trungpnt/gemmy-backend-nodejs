@@ -12,7 +12,7 @@ function Navbar() {
     const [sidebar, setSideBar] = useState(false)
 
     const showSidebar = () => setSideBar(!sidebar)
-
+    
     return (
         <>
             <IconContext.Provider value={{color: '#fff'}}>
@@ -21,11 +21,30 @@ function Navbar() {
                         <FaIcons.FaBars onClick={showSidebar} />
                     </Link>
                 </div>
-                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className='nav-menu-items'>
-                        <li className="navbar-toggle">
+                {/* <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                    <ul className='nav-menu-items'  onClick={showSidebar}>
+                        <li className="navbar-toggle" >
                             <Link>
-                                <AiIcons.AiOutlineClose />
+                                <AiIcons.AiOutlineClose  />
+                            </Link>
+                        </li>
+                        {SidebarData.map((item, index) => {
+                            return (
+                                <li key={index} className={item.cName}>
+                                    <Link to={item.path}>
+                                        {item.icon}
+                                        <span>{item.title}</span>
+                                    </Link>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </nav> */}
+                <nav className= 'nav-menu active' >
+                    <ul className='nav-menu-items'  onClick={showSidebar}>
+                        <li className="navbar-toggle" >
+                            <Link>
+                                <AiIcons.AiOutlineClose  />
                             </Link>
                         </li>
                         {SidebarData.map((item, index) => {

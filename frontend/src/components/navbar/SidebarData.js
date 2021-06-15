@@ -5,42 +5,42 @@ import * as IoIcons from "react-icons/io";
 
 export const SidebarData = [
     {
-        title: 'Home',
+        title: 'Class Management',
+        path : '/class-management',
+        icon: <AiIcons.AiFillHome/>,
+        //short for class name
+        cName : 'nav-text'
+    },
+    {
+        title: 'Active Classes',
+        path : '/active-class',
+        icon: <AiIcons.AiFillHome/>,
+        //short for class name
+        cName : 'nav-text'
+    },
+    {
+        title: 'Teacher Management',
         path : '/',
         icon: <AiIcons.AiFillHome/>,
         //short for class name
         cName : 'nav-text'
     },
     {
-        title: 'Home',
+        title: 'Student Management',
         path : '/',
         icon: <AiIcons.AiFillHome/>,
         //short for class name
         cName : 'nav-text'
     },
     {
-        title: 'Home',
+        title: 'Account Management',
         path : '/',
         icon: <AiIcons.AiFillHome/>,
         //short for class name
         cName : 'nav-text'
     },
     {
-        title: 'Home',
-        path : '/',
-        icon: <AiIcons.AiFillHome/>,
-        //short for class name
-        cName : 'nav-text'
-    },
-    {
-        title: 'Home',
-        path : '/',
-        icon: <AiIcons.AiFillHome/>,
-        //short for class name
-        cName : 'nav-text'
-    },
-    {
-        title: 'Home',
+        title: 'Special Days Management',
         path : '/',
         icon: <AiIcons.AiFillHome/>,
         //short for class name
