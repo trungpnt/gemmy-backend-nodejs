@@ -1,0 +1,8 @@
+.navbar{
+    background-color:black;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
