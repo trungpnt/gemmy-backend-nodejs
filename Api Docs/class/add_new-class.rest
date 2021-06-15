@@ -23,10 +23,10 @@ POST url HTTP/1.1
     "student_list" : [
          {
             "student_id" : "foeiwafoibwea",
-            "dob" :"22/02/2002",
+            "dob" :"12/02/2002",
             "contact_info": "111/222 ABC street",
             "test_date" : "02/02/2000",
-            "initial_test_result" : "6.5",
+            "initial_test_result" : 6.0,
             "class_level_enrolled": "abfawef291239",
             "discount_code" : "5%",
             "amount_paid" : 2000000,

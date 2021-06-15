@@ -9,7 +9,7 @@ function genClassCode(class_level, class_label, class_name) {
 }
 
 function getEndDate(total_sessions,start_date) {
-
+        
 }
 
 exports.createClass = (req, res, next) => {

@@ -5,7 +5,7 @@ const studentSchema = new mongoose.Schema({
     dob: Date,
     contact_info: String,
     test_date: Date,
-    initial_test_result: String,
+    initial_test_result: Number,
     class_level_enrolled: String, //class code,
     discount_code: String,
     amount_paid: Number,

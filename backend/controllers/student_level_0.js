@@ -16,9 +16,10 @@ exports.createStudentLevelZero = (req, res, next) => {
     }
 
     const studentLevelZero = new StudentLevelZero({
+
         full_name: req.body.full_name,
         phone_number: req.body.phone_number,
-        contact_page_day: req.body.contact_page_day,
+        contact_page_date: req.body.contact_page_date,
         test_date: req.body.test_date,
         dob: req.body.dob,
         test_time: req.body.test_time,
@@ -27,9 +28,7 @@ exports.createStudentLevelZero = (req, res, next) => {
         is_reminded: req.body.is_reminded,
         notes: req.body.notes,
         is_under_care: is_under_care,
-        //optional 
         friend_student_id_list: friend_student_id_list,
-        //optional
         parent_info: parent_info,
         free_days_list: req.body.free_days_list,
     });
@@ -39,10 +38,8 @@ exports.createStudentLevelZero = (req, res, next) => {
         .then( createdStudentLevelZero => {
             res.status(201).json({
                 message: "StudentLevelZero added successfully",
-                student_level_zero: {
-                    ...createdStudentLevelZero,
-                    id: createdStudentLevelZero._id
-                }
+                student_level_zero: createdStudentLevelZero,
+                id: createdStudentLevelZero._id
             });
         })
         .catch(error => {

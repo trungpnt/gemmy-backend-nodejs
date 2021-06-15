@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const parentInfo = new mongoose.Schema({
   name: String,
   role: String,
-  phone: Number,
+  phone: String,
   email: String,
   facebook: String
 });
@@ -29,13 +29,13 @@ const studentLevelZeroSchema = mongoose.Schema({
   test_time: { type: String, required: true },
   
   occupation: { type: String, required: true },
-  is_returning: { type: Boolean, required : true },
+  is_returning_student: { type: Boolean, required : true },
   is_reminded: { type: Boolean },
   notes: { type: String, required: false },
   is_under_care : {type: Boolean},
 
   friend_student_id_list: [friends],
-  parent_info: [parentInfo],
+  parent_info: parentInfo,
   free_days_list : [freeDay]
 });
 
