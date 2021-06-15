@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
 function Navbar() {
+
+    const [sidebar,setSideBar] = useState(false)
+
+    
+
     return (
         <>
             <div className='navbar'>
