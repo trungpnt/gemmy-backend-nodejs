@@ -58,19 +58,32 @@ exports.createClass = (req, res, next) => {
 }
 
 
-exports.updateClass = (req, res, next) => {
-    let imagePath = req.body.imagePath;
-    if (req.file) {
-        const url = req.protocol + "://" + req.get("host");
-        imagePath = url + "/images/" + req.file.filename;
-    }
+
+exports.updateClassStatus = (req, res, next) => {
+   
     const classModel = new Class({
         _id: req.body.id,
-        title: req.body.title,
-        content: req.body.content,
-        imagePath: imagePath,
-        creator: req.userData.userId
+       is_active : req.body.is_active
     });
+
+    classModel.updateOne({ _id: req.params.id, is_active: classModel.is_active }, classModel)
+
+        .then(result => {
+            if (result.n > 0) {
+                res.status(200).json({ message: "Update successful!" });
+            } else {
+                res.status(401).json({ message: "Not authorized!" });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Couldn't update Class!"
+            });
+        });
+};
+
+exports.updateClass = (req, res, next) => {
+   
     classModel.updateOne({ _id: req.params.id, creator: req.userData.userId }, classModel)
         .then(result => {
             if (result.n > 0) {
