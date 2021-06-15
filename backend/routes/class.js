@@ -9,9 +9,9 @@ const router = express.Router();
 
 router.post("", /*checkAuth*/ ClassController.createClass);
 
-router.put("/:id",ClassController.updateClassStatus);
+router.put("/:id",ClassController.updateClass);
 
-router.put("/:id", ClassController.updateClass);
+router.patch("/:id",ClassController.updateClass);
 
 router.get("", ClassController.getClass);
 

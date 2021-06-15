@@ -52,8 +52,6 @@ app.use("/api/user", userRoutes);
 
 app.use("/api/class", classRoutes);
 
-app.use("/api/class-status", classRoutes );
-
 app.use("/api/label", labelRoutes);
 
 app.use("/api/student-level-0", studentLevelZeroRoutes);

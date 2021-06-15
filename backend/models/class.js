@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 const studentSchema = new mongoose.Schema({
     student_id: String,
     dob: Date,
-    contact_info: String,
-    test_date: Date,
-    initial_test_result: Number,
+    entry_test_result: Number,
     class_level_enrolled: String, //class code,
     discount_code: String,
     amount_paid: Number,
@@ -30,7 +28,7 @@ const classSchema = mongoose.Schema({
     //remember to calculate
     date_end: { type: Date, required: true },
     is_active: { type: Boolean, required: true },
-
+    
     class_session: [classSessionSchema],
     student_list: [studentSchema],
     class_note: { type: String, required: false }
