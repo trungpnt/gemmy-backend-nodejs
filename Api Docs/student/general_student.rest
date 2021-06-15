@@ -1,0 +1,94 @@
+POST 
+
+const url = "localhost:";
+
+POST {url}/potential-student
+{
+    "full_name" : "pham nguyen tan trung",
+    "phone_number" : "01231240128",
+    
+    "entry_test_datetime": [
+        {
+            "date": "25/12/2021 ",
+            " time" : "7AM - 9AM "
+        },
+        {
+            "date": "26/12/2021 ",
+            " time" : "7AM - 9AM "
+        }
+    ] ,
+    
+    "final_test_datetime": [
+        {
+            "date": "25/12/2021 ",
+            " time" : "7AM - 9AM "
+        },
+        {
+            "date": "26/12/2021 ",
+            " time" : "7AM - 9AM "
+        }
+    ] ,
+    
+    "contact_page_date":"17/06/2010",
+    "dob" : "06/05/1995",
+    "occupation": "student",
+
+    "friend_student_id_list" :[
+        {"student_id": "ObjectIdabciaosjddw948092184"},
+        {"student_id": "ObjectIdabciaosjddw948092184"}
+    ],
+
+    "parent_info" : {
+        "name": "",
+        "role": "",
+        "phone": "",
+        "email":"",
+        "facebook":""
+    },
+    "free_days_list" :[
+        {
+            "day" : "monday",
+            "time": "7am-9am"
+        },
+        {
+            "day" : "monday",
+            "time": "7am-9am"
+        }
+    ],
+    "is_returning_student": 1,
+    "class_enrolled": [
+        { "class_id": "fewafoawei"},
+        { "class_id": "fewafoawei"}
+    ],
+
+    "is_reminded_before_entry_test_date" : 1,
+    "is_reminded_before_final_test_date" : 1,
+    "is_attend_entry_test_date" : 1,
+    "is_attend_final_test_date" : 0,
+
+    "entry_test_result": {
+        "speaking" : 6.5,
+        "listening" : 6.5,
+        "writing" : 6.5,
+        "speaking" : 6.5,
+        "overall_band_score": 6.5
+     },
+
+    "final_test_result": {
+        "speaking" : 6.5,
+        "listening" : 6.5,
+        "writing" : 6.5,
+        "speaking" : 6.5,
+        "overall_band_score": 6.5
+    },
+
+    "current_class_id_enrolled": "ObjectId12371", 
+
+    "special_offer_id":[
+        {"offer_id" : "ObjectId(312312)"},
+        {"offer_code" : "001"},
+        {  }
+    ]
+
+    "notes" : "this is good" 
+}

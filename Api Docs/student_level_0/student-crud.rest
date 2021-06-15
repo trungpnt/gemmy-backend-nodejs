@@ -7,7 +7,7 @@ POST {url}/potential-student
    "full_name" : "pham nguyen tan trung",
     "phone_number" : "01231240128",
     "test_date": "25/12/2021",
-    "contact_page_day":"17/06/2010",
+    "contact_page_date":"17/06/2010",
     "dob" : "06/05/1995",
     "occupation": "student",
     "test_time":"7AM-9AM",
@@ -45,7 +45,7 @@ UPDATE {url}/potential-student
     "full_name" : "",
     "phone_number" : "",
     "test_date": "",
-    "contact_page_day":"",
+    "contact_page_date":"",
     //"is_young_buffalo" : 1, => backend handles
     "dob" : "",
     "occupation": "small children",
