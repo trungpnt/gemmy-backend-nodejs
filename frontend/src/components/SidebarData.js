@@ -10,5 +10,40 @@ export const SidebarData = [
         icon: <AiIcons.AiFillHome/>,
         //short for class name
         cName : 'nav-text'
+    },
+    {
+        title: 'Home',
+        path : '/',
+        icon: <AiIcons.AiFillHome/>,
+        //short for class name
+        cName : 'nav-text'
+    },
+    {
+        title: 'Home',
+        path : '/',
+        icon: <AiIcons.AiFillHome/>,
+        //short for class name
+        cName : 'nav-text'
+    },
+    {
+        title: 'Home',
+        path : '/',
+        icon: <AiIcons.AiFillHome/>,
+        //short for class name
+        cName : 'nav-text'
+    },
+    {
+        title: 'Home',
+        path : '/',
+        icon: <AiIcons.AiFillHome/>,
+        //short for class name
+        cName : 'nav-text'
+    },
+    {
+        title: 'Home',
+        path : '/',
+        icon: <AiIcons.AiFillHome/>,
+        //short for class name
+        cName : 'nav-text'
     }
 ]
