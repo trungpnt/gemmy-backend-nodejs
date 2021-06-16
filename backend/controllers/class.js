@@ -12,6 +12,7 @@ function getEndDate(total_sessions, start_date) {
 
 }
 
+
 exports.createClass = (req, res, next) => {
 
     var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
@@ -21,7 +22,7 @@ exports.createClass = (req, res, next) => {
             if (result) {
                 res.status(200).json({ message: "The class_code with the same name already exists !" });
             } else {
-               const classModel = new Class({
+                const classModel = new Class({
                     class_name: req.body.class_name,
                     class_code: class_code,
                     slots: req.body.slots,
@@ -31,9 +32,12 @@ exports.createClass = (req, res, next) => {
                     date_end: "06/05/1990",
                     note: req.body.note,
                     is_active: req.body.is_active,
-                    //the problem starts here!    
+
                     class_session: req.body.class_session,
-                    student_list: req.body.student_list
+                    student_list: req.body.student_list,
+                    //slots management - calculation
+                    current_total_students: req.body.student_list.length,
+                    remaining_slots: req.body.slots - req.body.student_list.length
                 });
                 classModel
                     .save()
@@ -59,17 +63,16 @@ exports.createClass = (req, res, next) => {
 
 exports.updateClass = (req, res, next) => {
 
-    if(req.body.class_label != null && req.body.class_level != null && req.body.class_name ) {
+    //Update a full class
+    if (req.body.class_label != null && req.body.class_level != null && req.body.class_name) {
+        
+        Class.findById(req.params.id)
+            .then(class_found => {
+                if(class_found){
+                    var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
 
-        var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
-
-        Class.findOne({ class_code: class_code })
-        .then(result => {
-            if (result) {
-                res.status(200).json({ message: "The class_code with the same name already exists !" });
-            } else {
                 const classModel = new Class({
-                    _id : req.body.id,
+                    _id: req.body.id,
                     class_name: req.body.class_name,
                     class_code: class_code,
                     slots: req.body.slots,
@@ -79,68 +82,89 @@ exports.updateClass = (req, res, next) => {
                     date_end: "06/05/1990",
                     note: req.body.note,
                     is_active: req.body.is_active,
-           
+
                     class_session: req.body.class_session,
-                    student_list: req.body.student_list
+                    student_list: req.body.student_list,
+
+                    current_total_students: req.body.student_list.length,
+                    remaining_slots: req.body.slots - req.body.student_list.length
                 });
 
-                Class.updateOne({ _id: classModel._id }, classModel)
+                class_found = classModel;
+
+                Class.findOne({ class_code: class_code })
                     .then(result => {
-                        if (result.n > 0) {
-                            res.status(200).json({
-                                 message: "Update new class successfully",
-                                 updated_class: classModel
-                            });
+                        if (result) {
+                            res.status(200).json({ message: "The class_code with the same name already exists !" });
                         } else {
-                            res.status(401).json({ message: "Not authorized!" });
+
+
+                            Class.updateOne({ _id: classModel._id }, classModel)
+                                .then(result => {
+                                    if (result.n > 0) {
+                                        res.status(200).json({
+                                            message: "Update new class successfully",
+                                            updated_class: classModel
+                                        });
+                                    } else {
+                                        res.status(401).json({ message: "Not authorized!" });
+                                    }
+                                })
+                                .catch(error => {
+                                    res.status(500).json({
+                                        message: "Couldn't update Class!"
+                                    });
+                                });
                         }
                     })
                     .catch(error => {
-                        res.status(500).json({
-                            message: "Couldn't update Class!"
+                        res.status(501).json({
+                            message: "Please check your inputs and try again!"
                         });
-                    }); 
-            }
-        })
-        .catch(error => {
-            res.status(501).json({
-                message: "Please check your inputs and try again!"
-            });
-        });
-    }
-
-    //UPDATE JUST THE CLASS ACTIVE STATUS
-    else { 
-        Class.findById(req.params.id)
-        .then(class_found => {
-            if (class_found) {
-                class_found.is_active = req.body.is_active
-                Class.updateOne({ _id: req.params.id}, class_found)
-            .then(result => {
-                if (result.n > 0) {
-                    res.status(200).json({
-                         message: "Update new class active status successfully!",
-                         class_active_status: req.body.is_active
                     });
-                } else {
-                    res.status(401).json({ message: "Not authorized!" });
+                }
+                else{
+                    res.status(404).json({ message: "Class not found!" });
                 }
             })
             .catch(error => {
                 res.status(500).json({
-                    message: "Couldn't update Class!"
+                })
+            })
+    }
+
+    //UPDATE JUST THE CLASS ACTIVE STATUS
+    else {
+        Class.findById(req.params.id)
+            .then(class_found => {
+                if (class_found) {
+                    class_found.is_active = req.body.is_active
+                    Class.updateOne({ _id: req.params.id }, class_found)
+                        .then(result => {
+                            if (result.n > 0) {
+                                res.status(200).json({
+                                    message: "Update new class active status successfully!",
+                                    class_active_status: req.body.is_active
+                                });
+                            } else {
+                                res.status(401).json({ message: "Not authorized!" });
+                            }
+                        })
+                        .catch(error => {
+                            res.status(500).json({
+                                message: "Couldn't update Class!"
+                            });
+                        });
+                } else {
+                    res.status(404).json({ message: "Class not found!" });
+                }
+            })
+            .catch(error => {
+                res.status(500).json({
+                    message: "Fetching Class failed!"
                 });
-            }); 
-            } else {
-                res.status(404).json({ message: "Class not found!" });
-            }
-        })
-        .catch(error => {
-            res.status(500).json({
-                message: "Fetching Class failed!"
             });
-        });
-        
+
     }
 };
 

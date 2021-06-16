@@ -31,7 +31,11 @@ const classSchema = mongoose.Schema({
     
     class_session: [classSessionSchema],
     student_list: [studentSchema],
-    class_note: { type: String, required: false }
+    class_note: { type: String, required: false },
+
+    //slot-management
+    current_total_students: {type: Number, required: true},
+    remaining_slots: {type: Number, required: true}
 });
 
 module.exports = mongoose.model("Class", classSchema);
