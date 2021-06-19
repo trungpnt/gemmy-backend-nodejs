@@ -12,6 +12,10 @@ function getEndDate(total_sessions, start_date) {
 
 }
 
+function remainingDaysFromCourseEndDate(end_date) {
+    var today = new Date();
+    return end_date.getDate() - today.getDate();
+}
 
 exports.createClass = (req, res, next) => {
 
@@ -167,7 +171,7 @@ exports.updateClass = (req, res, next) => {
                                     res.status(200).json({
                                         message: "Update new student list successfully!",
                                         initial_slots: class_found.slots,
-                                        new_slot_added : list_size,
+                                        new_slot_added: list_size,
                                         remaining_slots: class_found.remaining_slots,
                                         total_current_students: class_found.current_total_students,
                                         new_student_list: class_found.student_list,
@@ -229,7 +233,99 @@ exports.updateClass = (req, res, next) => {
     }
 };
 
+exports.getClassTimeRange = (req, res, next) => {
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+
+    const ClassQuery = Class.find({ is_active: true, remaining_slots: {$gt : 1} , }.select({student_list: 0}));
+
+    
+
+    if (pageSize && currentPage) {
+        ClassQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    }
+    let fetchedClass;
+    ClassQuery
+        .then(documents => {
+
+            fetchedClass = documents;
+            return Class.count();
+        })
+        .then(count => {
+            res.status(200).json(
+                [
+                    {
+                        message: "Class's time ranges fetched! successfully",
+                        time_ranges: times,
+                        maxClass: count,
+                        ends_in: remainingDaysFromCourseEndDate()
+                    },
+
+                ]
+            );
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Class failed!"
+            });
+        });
+}
+
+exports.getFutureClasses = (req, res, next) => {
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+
+    const ClassQuery = Class.find();
+
+
+
+    if (pageSize && currentPage) {
+        ClassQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    }
+    let fetchedClass;
+    ClassQuery
+        .then(documents => {
+            fetchedClass = documents;
+            return Class.count();
+        })
+        .then(count => {
+            res.status(200).json(
+                [
+                    {
+                        message: "Class's time ranges fetched! successfully",
+                        time_ranges: times,
+                        maxClass: count,
+                        ends_in: remainingDaysFromCourseEndDate()
+                    },
+
+                ]
+            )
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Class failed!"
+            });
+        });
+};
+
 exports.getClass = (req, res, next) => {
+
+    Class.findById(req.params.id)
+        .then(class_found => {
+            if (class_found) {
+                res.status(200).json(class_found);
+            } else {
+                res.status(404).json({ message: "Class not found!" });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({
+                message: "Fetching Class failed!"
+            });
+        });
+};
+
+exports.getClasses = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     const ClassQuery = Class.find();

@@ -13,7 +13,11 @@ router.put("/:id",ClassController.updateClass);
 
 router.patch("/:id",ClassController.updateClass);
 
-router.get("", ClassController.getClass);
+router.get("", ClassController.getClasses);
+
+router.get("/future", ClassController.getFutureClasses);
+
+router.get("/time-range",ClassController.getClassTimeRange)
 
 router.get("/:id", ClassController.getClass);
 

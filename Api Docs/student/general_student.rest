@@ -9,24 +9,38 @@ POST {url}/potential-student
     
     "entry_test_datetime": [
         {
-            "date": "25/12/2021 ",
-            " time" : "7AM - 9AM "
+            "date": "12/25/2021",
+            "day_session": "morning",
+            " time" : "79",
+            "skill" : "listening",
         },
         {
-            "date": "26/12/2021 ",
-            " time" : "7AM - 9AM "
+            "day_session":"evening",
+            "date": "7/12/2021 ",
+            " time" : "1921",
+            "skill" : "reading",
         }
     ] ,
     
     "final_test_datetime": [
-        {
-            "date": "25/12/2021 ",
-            " time" : "7AM - 9AM "
+         {
+            "date": "12/25/2021",
+            "day_session": "mor",
+            " time" : "79",
+            "skill" : "listening",
         },
         {
-            "date": "26/12/2021 ",
-            " time" : "7AM - 9AM "
-        }
+            "day_session":"eve",
+            "date": "7/12/2021 ",
+            " time" : "1921",
+            "skill" : "reading",
+        },
+        {
+            "day_session":"eve",
+            "date": "7/12/2021 ",
+            " time" : "1921",
+            "skill" : "speaking",
+        },
     ] ,
     
     "contact_page_date":"17/06/2010",
@@ -38,6 +52,7 @@ POST {url}/potential-student
         {"student_id": "ObjectIdabciaosjddw948092184"}
     ],
 
+    //exclude if null
     "parent_info" : {
         "name": "",
         "role": "",
@@ -45,14 +60,41 @@ POST {url}/potential-student
         "email":"",
         "facebook":""
     },
+
     "free_days_list" :[
         {
-            "day" : "monday",
-            "time": "7am-9am"
+            "day_session": "mor",
+            "weekdays_and_time":[
+                {
+                    "day" : "mon",
+                    "time": "79"
+                },
+                {
+                    "day" : "wed",
+                    "time": "810"
+                },
+                {
+                    "day" : "fri",
+                    "time": "810"
+                },
+            ]
         },
         {
-            "day" : "monday",
-            "time": "7am-9am"
+            "day_session": "aft",
+            "weekdays_and_time":[
+                {
+                    "day" : "mon",
+                    "time": "1315"
+                },
+                {
+                    "day" : "wed",
+                    "time": "1517"
+                },
+                {
+                    "day" : "fri",
+                    "time": "1921"
+                },
+            ]
         }
     ],
     "is_returning_student": 1,
@@ -88,7 +130,7 @@ POST {url}/potential-student
         {"offer_id" : "ObjectId(312312)"},
         {"offer_code" : "001"},
         {  }
-    ]
+    ],
 
     "notes" : "this is good" 
 }

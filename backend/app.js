@@ -17,7 +17,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://Trung:CsCJzKHR1eCp48lb@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
+    "mongodb+srv://Trung:Nostradamus753@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
   )
 //   .connect(
 //     "mongodb://127.0.0.1:27017/Gemmy"

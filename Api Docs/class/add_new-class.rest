@@ -2,31 +2,33 @@ const URL = "localhost:";
 
 POST url HTTP/1.1
 {
-    "class_name": "pre ielts",
+    "class_name": "rachua",
     "class_label": "A",
     "class_level": "45",
     "slots": 19,
     "total_sessions": 33,
     "date_start":"06/05/1995",
-    "is_active": 1,
+    "is_active": 0,
     "tuition_fee":2000000,
     "class_session": [
             {
-                "day": "Monday",
-                "time_range": "7:00 - 9:00"
+                "day_session" : "eve",
+                "day": "mon",
+                "time_range": "1921",
+                "skills" :["listening", "speaking"]
             },
             {
-                "day": "Thursday",
-                "time_range": "7:00 - 9:00"
+                "day_session" : "eve",
+                "day": "wed",
+                "time_range": "1921",
+                "skills": ["reading","writing"]
             }
       ],
     "student_list" : [
          {
             "student_id" : "foeiwafoibwea",
             "dob" :"12/02/2002",
-            "contact_info": "111/222 ABC street",
-            "test_date" : "02/02/2000",
-            "initial_test_result" : 6.0,
+            "entry_test_result" : 6.0,
             "class_level_enrolled": "abfawef291239",
             "discount_code" : "5%",
             "amount_paid" : 2000000,
