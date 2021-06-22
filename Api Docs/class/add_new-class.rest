@@ -15,13 +15,19 @@ POST url HTTP/1.1
                 "day_session" : "eve",
                 "day": "mon",
                 "time_range": "1921",
-                "skills" :["listening", "speaking"]
+                "skills" :[
+                   "listening", 
+                   "speaking"
+               ]
             },
             {
                 "day_session" : "eve",
                 "day": "wed",
                 "time_range": "1921",
-                "skills": ["reading","writing"]
+                "skills": [
+                    "reading",
+                    "writing"
+                ]
             }
       ],
     "student_list" : [

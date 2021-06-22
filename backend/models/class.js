@@ -1,16 +1,5 @@
 const mongoose = require("mongoose");
 
-const studentSchema = new mongoose.Schema({
-    student_id: String,
-    dob: Date,
-    entry_test_result: Number,
-    class_level_enrolled: String, //class code,
-    discount_code: String,
-    amount_paid: Number,
-    amount_remaining: Number,
-    student_notes: String
-});
-
 const classSessionSchema = new mongoose.Schema({
     day_session: String,
     day: String,
@@ -33,7 +22,7 @@ const classSchema = mongoose.Schema({
     is_active: { type: Boolean, required: true },
     
     class_session: [classSessionSchema],
-    student_list: [studentSchema],
+    student_list: {type: [String]},
     class_note: { type: String, required: false },
 
     //slot-management
