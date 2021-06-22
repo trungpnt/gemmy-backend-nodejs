@@ -47,6 +47,7 @@ POST {url}/potential-student
     "dob" : "06/05/1995",
     "occupation": "student",
 
+    //cứ tạo ra trước, sau này tạo mới id bảng friends
     "friend_student_id_list" :[
         {"student_id": "ObjectIdabciaosjddw948092184"},
         {"student_id": "ObjectIdabciaosjddw948092184"}
@@ -76,7 +77,7 @@ POST {url}/potential-student
                 {
                     "day" : "fri",
                     "time": "810"
-                },
+                }
             ]
         },
         {
@@ -93,7 +94,7 @@ POST {url}/potential-student
                 {
                     "day" : "fri",
                     "time": "1921"
-                },
+                }
             ]
         }
     ],
@@ -112,7 +113,7 @@ POST {url}/potential-student
         "speaking" : 6.5,
         "listening" : 6.5,
         "writing" : 6.5,
-        "speaking" : 6.5,
+        "reading" : 6.5,
         "overall_band_score": 6.5
      },
 
@@ -120,11 +121,11 @@ POST {url}/potential-student
         "speaking" : 6.5,
         "listening" : 6.5,
         "writing" : 6.5,
-        "speaking" : 6.5,
+        "reading" : 6.5,
         "overall_band_score": 6.5
     },
 
-    "current_class_id_enrolled": "ObjectId12371", 
+    "current_class_code_enrolled": "MA45IELTS", 
 
     "special_offer_id":[
         {"offer_id" : "ObjectId(312312)"},
