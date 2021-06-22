@@ -8,14 +8,14 @@ const parentInfo = new mongoose.Schema({
     facebook: String
 });
 
-const entry_test = new mongoose.Schema({
+const entry_test_date_data = new mongoose.Schema({
     date: Date,
     day_session: String,
     time: String,
     skill: String,
 });
 
-const final_test = new mongoose.Schema({
+const final_test_date_data= new mongoose.Schema({
     date: Date,
     day_session: String,
     time: String,
@@ -32,13 +32,11 @@ const freeDay = new mongoose.Schema({
     weekdays_and_time: [date_time_data]
 });
 
-
-
 const friends = new mongoose.Schema({
     student_id: String,
 })
 
-const enrolled_class_data = new mongoose.Schema({
+const previous_enrolled_class_data = new mongoose.Schema({
     class_code_id: String,
 })
 
@@ -70,13 +68,12 @@ const studentLevelZeroSchema = mongoose.Schema({
     //
     //   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     //
-    test_date: { type: Date, required: true },
+    final_test_datetime: [entry_test_date_data],
     dob: { type: Date, required: true },
-    test_time: { type: String, required: true },
+    entry_test_datetime: [entry_test_date_data],
 
     occupation: { type: String, required: true },
     is_returning_student: { type: Boolean, required: true },
-    is_reminded: { type: Boolean },
     notes: { type: String, required: false },
     is_under_care: { type: Boolean },
 
@@ -84,14 +81,13 @@ const studentLevelZeroSchema = mongoose.Schema({
     parent_info: parentInfo,
     free_days_list: [freeDay],
 
-    previous_class_code_enrolled: [enrolled_class_data],
-    
+    previous_class_code_enrolled: [previous_enrolled_class_data],
     current_class_code_enrolled: {type: String},
     is_reminded_before_entry_test_date: { type: Boolean },
     is_reminded_before_final_test_date: { type: Boolean },
     is_attend_entry_test_date: { type: Boolean },
     is_attend_final_test_date: { type: Boolean },
-
+    
     entry_test_result: entry_test_data,
     final_test_result: final_test_data,
 

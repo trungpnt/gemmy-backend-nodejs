@@ -6,10 +6,24 @@ exports.createStudentLevelZero = (req, res, next) => {
     var friend_student_id_list = [];
     var is_under_care = false;
 
-    if (req.body.parent_info != null){
-        parent_info = req.body.parent_info;
-        is_under_care = true;
-    }
+    // var entry_test_result = null;
+    // var final_test_result = null;
+    // var current_class_code_enrolled = null;
+    // var is_reminded_before_entry_test_date = false;
+    // var is_reminded_before_final_test_date = false;
+
+    // var is_attend_entry_test_date = false;
+
+    // var is_attend_final_test_date = false;
+
+    // if (req.body.parent_info != null){
+    //     parent_info = req.body.parent_info;
+    //     is_under_care = true;
+    // }
+
+    // if (req.body.entry_test_result != null){
+    //     entry_test_result = req.body.entry_test_result;
+    // }
 
     if (req.body.friend_student_id_list != null){
         friend_student_id_list = req.body.friend_student_id_list;
@@ -20,17 +34,37 @@ exports.createStudentLevelZero = (req, res, next) => {
         full_name: req.body.full_name,
         phone_number: req.body.phone_number,
         contact_page_date: req.body.contact_page_date,
-        test_date: req.body.test_date,
         dob: req.body.dob,
-        test_time: req.body.test_time,
+        entry_test_datetime: req.body.entry_test_datetime,
+        final_test_datetime: req.body.final_test_datetime,
         occupation: req.body.occupation,
         is_returning_student: req.body.is_returning_student,
-        is_reminded: req.body.is_reminded,
+        is_reminded_before_entry_test_date: req.body.is_reminded_before_entry_test_date,
         notes: req.body.notes,
         is_under_care: is_under_care,
-        friend_student_id_list: friend_student_id_list,
-        parent_info: parent_info,
+        
+        //
+        friend_student_id_list: req.body.friend_student_id_list,
+        parent_info: req.body.parent_info,
+
         free_days_list: req.body.free_days_list,
+
+        previous_class_code_enrolled: req.body.previous_class_code_enrolled,
+
+        current_class_code_enrolled: req.body.current_class_code_enrolled,
+
+        is_reminded_before_entry_test_date:  req.body.is_reminded_before_entry_test_date,
+
+        is_reminded_before_final_test_date: req.body.is_reminded_before_final_test_date,
+
+        final_test_datetime: req.body.final_test_datetime,
+
+        entry_test_datetime: req.body.entry_test_datetime,
+
+        applied_offer : req.body.applied_offer,
+
+        entry_test_result : req.body.entry_test_result,
+        final_test_result: req.body.final_test_result
     });
 
     studentLevelZero

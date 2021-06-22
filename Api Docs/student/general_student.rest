@@ -11,14 +11,14 @@ POST {url}/potential-student
         {
             "date": "12/25/2021",
             "day_session": "morning",
-            " time" : "79",
-            "skill" : "listening",
+            "time" : "79",
+            "skill" : "listening"
         },
         {
             "day_session":"evening",
             "date": "7/12/2021 ",
-            " time" : "1921",
-            "skill" : "reading",
+            "time" : "1921",
+            "skill" : "reading"
         }
     ] ,
     
@@ -27,33 +27,31 @@ POST {url}/potential-student
             "date": "12/25/2021",
             "day_session": "mor",
             " time" : "79",
-            "skill" : "listening",
+            "skill" : "listening"
         },
         {
             "day_session":"eve",
             "date": "7/12/2021 ",
-            " time" : "1921",
-            "skill" : "reading",
+            "time" : "1921",
+            "skill" : "reading"
         },
         {
             "day_session":"eve",
             "date": "7/12/2021 ",
-            " time" : "1921",
-            "skill" : "speaking",
-        },
+            "time" : "1921",
+            "skill" : "speaking"
+        }
     ] ,
     
     "contact_page_date":"17/06/2010",
     "dob" : "06/05/1995",
     "occupation": "student",
 
-    //cứ tạo ra trước, sau này tạo mới id bảng friends
     "friend_student_id_list" :[
         {"student_id": "ObjectIdabciaosjddw948092184"},
         {"student_id": "ObjectIdabciaosjddw948092184"}
     ],
 
-    //exclude if null
     "parent_info" : {
         "name": "",
         "role": "",
@@ -99,9 +97,10 @@ POST {url}/potential-student
         }
     ],
     "is_returning_student": 1,
-    "class_enrolled": [
-        { "class_id": "fewafoawei"},
-        { "class_id": "fewafoawei"}
+
+    "previous_class_code_enrolled": [
+        { "class_code": "fewafoawei"},
+        { "class_code": "fewafoawei"}
     ],
 
     "is_reminded_before_entry_test_date" : 1,
@@ -117,7 +116,7 @@ POST {url}/potential-student
         "overall_band_score": 6.5
      },
 
-    "final_test_result": {
+      "final_test_result": {
         "speaking" : 6.5,
         "listening" : 6.5,
         "writing" : 6.5,
@@ -128,9 +127,10 @@ POST {url}/potential-student
     "current_class_code_enrolled": "MA45IELTS", 
 
     "applied_offer":[
-        {"offer_description" : "giảm 5% sách"},
-        {"offer_code" : "001"},
-        {  }
+        {
+           "offer_description" : "5% giảm sách",
+         "offer_code" : "001"
+        }
     ],
 
     "notes" : "this is good" 
