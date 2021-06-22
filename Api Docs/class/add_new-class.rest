@@ -25,16 +25,8 @@ POST url HTTP/1.1
             }
       ],
     "student_list" : [
-         {
-            "student_id" : "foeiwafoibwea",
-            "dob" :"12/02/2002",
-            "entry_test_result" : 6.0,
-            "class_level_enrolled": "abfawef291239",
-            "discount_code" : "5%",
-            "amount_paid" : 2000000,
-            "amount_remaining" : 0,
-            "student_notes" : "da lien he phu huynh"
-        }
+         "foeiwafoibwea",
+         "foeiwafoibwea"
     ],
    "class_notes": "this is a new class"
 }

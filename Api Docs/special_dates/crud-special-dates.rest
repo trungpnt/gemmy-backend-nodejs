@@ -2,98 +2,76 @@ POST url HTTP/1.1
 const url = "localhost:8080/label
 [
     {
-        date: "06/05/1995",
-        reason: "",
+        "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
-    },
+        "date": "06/05/1995",
+        "reason": ""
+    }
 ]
 
 GET url HTTP/1.1
 const url = "localhost:8080/label
 [
     {
-        date: "06/05/1995",
-        reason: "",
+        "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
-    },
+        "date": "06/05/1995",
+        "reason": ""
+    }
 ]
 
 PUT url HTTP/1.1
 const url = "localhost:8080/label
 [
     {
-        date: "06/05/1995",
-        reason: "",
+        "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
+         "date": "06/05/1995",
+        "reason": ""
     },
     {
-        date: "06/05/1995",
-        reason: "",
-    },
+        "date": "06/05/1995",
+        "reason": ""
+    }
 ]
 
 DELETE url HTTP/1.1
 const url = "localhost:8080/label
-[
-    {
-        date: "06/05/1995",
-        reason: "",
-    },
-    {
-        date: "06/05/1995",
-        reason: "",
-    },
-    {
-        date: "06/05/1995",
-        reason: "",
-    },
-    {
-        date: "06/05/1995",
-        reason: "",
-    },
-    {
-        date: "06/05/1995",
-        reason: "",
-    },
-]

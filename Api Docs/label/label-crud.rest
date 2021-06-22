@@ -1,84 +1,65 @@
 POST url HTTP/1.1
 const url = "localhost:8080/label"
 [
-    {
-        label_name: "A",
-        description: [
-            {
-                day: "Monday",
-                time range: "7:00 to 9:00"
-            },
-            {
-                day: "Thursday",
-                time range: "7:00 to 9:00"
-            }
-        ]
-    },
-    {
-            
-    }
+        {
+                "label_name": "Z",
+                "description": [
+                    {
+                        "day": "Monday",
+                        "time range": "7:00 to 9:00"
+                    },
+                    {
+                        "day": "Thursday",
+                        "time range": "7:00 to 9:00"
+                    }
+                ]
+        },  
+        {
+                "label_name": "F",
+                "description": [
+                    {
+                        "day": "Monday",
+                        "time range": "7:00 to 9:00"
+                    },
+                    {
+                        "day": "Thursday",
+                        "time range": "7:00 to 9:00"
+                    }
+                ]
+        }
 ]
 
 GET url HTTP/1.1
 [
-    {
-        label_name: "A",
-        description: [
-            {
-                day: "Monday",
-                time range: "7:00 to 9:00"
-            },
-            {
-                day: "Thursday",
-                time range: "7:00 to 9:00"
-            }
-        ]
-    }
+        {
+                "label_name": "Z",
+                "description": [
+                    {
+                        "day": "Monday",
+                        "time range": "7:00 to 9:00"
+                    },
+                    {
+                        "day": "Thursday",
+                        "time range": "7:00 to 9:00"
+                    }
+                ]
+        },  
+        {
+                "label_name": "F",
+                "description": [
+                    {
+                        "day": "Monday",
+                        "time range": "7:00 to 9:00"
+                    },
+                    {
+                        "day": "Thursday",
+                        "time range": "7:00 to 9:00"
+                    }
+                ]
+        }
 ]
 
 
 DELETE url HTTP/1.1
 //delete all ?? delete one record
-[
-    {
-        label_name: "A",
-     description: [
-            {
-                day: "Monday",
-                time range: "7:00 to 9:00"
-            },
-            {
-                day: "Thursday",
-                time range: "7:00 to 9:00"
-            }
-        ]
-    },
-    {
-        label_name: "A",
-     description: [
-            {
-                day: "Monday",
-                time range: "7:00 to 9:00"
-            },
-            {
-                day: "Thursday",
-                time range: "7:00 to 9:00"
-            }
-        ]
-    }
-]
 
-PUT url HTTP/1.1
-[
-     label_name: "A",
-     description: [
-            {
-                day: "Monday",
-                time range: "7:00 to 9:00"
-            },
-            {
-                day: "Thursday",
-                time range: "7:00 to 9:00"
-            }
-        ]
-]

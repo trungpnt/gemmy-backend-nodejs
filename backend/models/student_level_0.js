@@ -37,7 +37,7 @@ const friends = new mongoose.Schema({
 });
 
 const previous_enrolled_class_data = new mongoose.Schema({
-    class_code_id: String,
+    class_code: String,
 });
 
 const entry_test_data = new mongoose.Schema({

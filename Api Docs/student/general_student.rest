@@ -26,7 +26,7 @@ POST {url}/potential-student
          {
             "date": "12/25/2021",
             "day_session": "mor",
-            " time" : "79",
+            "time" : "79",
             "skill" : "listening"
         },
         {
@@ -43,7 +43,7 @@ POST {url}/potential-student
         }
     ] ,
     
-    "contact_page_date":"17/06/2010",
+    "contact_page_date":"12/06/2010",
     "dob" : "06/05/1995",
     "occupation": "student",
 
@@ -53,11 +53,11 @@ POST {url}/potential-student
     ],
 
     "parent_info" : {
-        "name": "",
-        "role": "",
-        "phone": "",
-        "email":"",
-        "facebook":""
+        "name": "fwea",
+        "role": "fwa",
+        "phone": "wfaw",
+        "email":"fewafew",
+        "facebook":"fewafew"
     },
 
     "free_days_list" :[
@@ -123,12 +123,12 @@ POST {url}/potential-student
         "reading" : 6.5,
         "overall_band_score": 6.5
     },
-
+    
     "current_class_code_enrolled": "MA45IELTS", 
 
     "applied_offer":[
         {
-           "offer_description" : "5% giảm sách",
+         "offer_description" : "5% giảm sách",
          "offer_code" : "001"
         }
     ],
