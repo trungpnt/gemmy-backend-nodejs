@@ -34,11 +34,11 @@ const freeDay = new mongoose.Schema({
 
 const friends = new mongoose.Schema({
     student_id: String,
-})
+});
 
 const previous_enrolled_class_data = new mongoose.Schema({
     class_code_id: String,
-})
+});
 
 const entry_test_data = new mongoose.Schema({
     speaking: Number,
@@ -46,7 +46,7 @@ const entry_test_data = new mongoose.Schema({
     writing: Number,
     reading: Number,
     overall_band_score: Number
-})
+});
 
 const final_test_data = new mongoose.Schema({
     speaking: Number,
@@ -54,12 +54,12 @@ const final_test_data = new mongoose.Schema({
     writing: Number,
     reading: Number,
     overall_band_score: Number
-})
+});
 
 const offer_data = new mongoose.Schema({
     offer_code: String,
     offer_description: String
-})
+});
 
 const studentLevelZeroSchema = mongoose.Schema({
     full_name: { type: String, required: true },

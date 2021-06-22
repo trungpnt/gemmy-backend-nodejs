@@ -43,12 +43,11 @@ exports.createStudentLevelZero = (req, res, next) => {
         notes: req.body.notes,
         is_under_care: is_under_care,
         
-        //
         friend_student_id_list: req.body.friend_student_id_list,
         parent_info: req.body.parent_info,
 
         free_days_list: req.body.free_days_list,
-
+        
         previous_class_code_enrolled: req.body.previous_class_code_enrolled,
 
         current_class_code_enrolled: req.body.current_class_code_enrolled,
@@ -56,10 +55,6 @@ exports.createStudentLevelZero = (req, res, next) => {
         is_reminded_before_entry_test_date:  req.body.is_reminded_before_entry_test_date,
 
         is_reminded_before_final_test_date: req.body.is_reminded_before_final_test_date,
-
-        final_test_datetime: req.body.final_test_datetime,
-
-        entry_test_datetime: req.body.entry_test_datetime,
 
         applied_offer : req.body.applied_offer,
 
