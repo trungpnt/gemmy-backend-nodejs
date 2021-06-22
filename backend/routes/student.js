@@ -1,20 +1,20 @@
 const express = require("express");
 
-const PostController = require("../controllers/posts");
+const StudentController = require("../controllers/student");
 
 const checkAuth = require("../middleware/check-auth");
 const extractFile = require("../middleware/file");
 
 const router = express.Router();
 
-router.post("", checkAuth, extractFile, PostController.createPost);
+router.post("", StudentController.createStudent);
 
-router.put("/:id", checkAuth, extractFile, PostController.updatePost);
+router.put("/:id",  StudentController.updateStudent);
 
-router.get("", PostController.getPosts);
+router.get("", StudentController.getStudents);
 
-router.get("/:id", PostController.getPost);
+router.get("/:id", StudentController.getStudent);
 
-router.delete("/:id", checkAuth, PostController.deletePost);
+router.delete("/:id", StudentController.deleteStudent);
 
 module.exports = router;

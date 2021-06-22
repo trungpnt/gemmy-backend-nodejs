@@ -7,7 +7,7 @@ const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
 const classRoutes  = require("./routes/class")
 const labelRoutes = require("./routes/label")
-const studentLevelZeroRoutes = require("./routes/student_level_0")
+const studentLevelZeroRoutes = require("./routes/student")
 const studentLevelFirstRoutes = require("./routes/student_level_1")
 const studentLevelTwoRoutes = require("./routes/student_level_2")
 const specialDayRoutes = require("./routes/special_days")
@@ -54,12 +54,7 @@ app.use("/api/class", classRoutes);
 
 app.use("/api/label", labelRoutes);
 
-app.use("/api/student-level-0", studentLevelZeroRoutes);
-
-app.use("/api/student-level-1", studentLevelFirstRoutes);
-
-app.use("/api/student-level-2",
-studentLevelTwoRoutes);
+app.use("/api/student", studentLevelZeroRoutes);
 
 app.use("/api/special-days", specialDayRoutes);
 

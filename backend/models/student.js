@@ -61,7 +61,7 @@ const offer_data = new mongoose.Schema({
     offer_description: String
 });
 
-const studentLevelZeroSchema = mongoose.Schema({
+const studentSchema = mongoose.Schema({
     full_name: { type: String, required: true },
     phone_number: { type: String, required: true },
     contact_page_date: { type: Date, required: true },
@@ -95,4 +95,4 @@ const studentLevelZeroSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("StudentLevelZero", studentLevelZeroSchema);
+module.exports = mongoose.model("Student", studentSchema);
