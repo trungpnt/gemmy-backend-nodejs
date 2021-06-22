@@ -127,8 +127,8 @@ POST {url}/potential-student
 
     "current_class_code_enrolled": "MA45IELTS", 
 
-    "special_offer_id":[
-        {"offer_id" : "ObjectId(312312)"},
+    "applied_offer":[
+        {"offer_description" : "giảm 5% sách"},
         {"offer_code" : "001"},
         {  }
     ],
