@@ -18,11 +18,7 @@ exports.createLabel = (req, res, next) => {
                         .save()
                         .then(createdLabel => {
                             res.status(201).json({
-                                message: "Label added successfully",
-                                label: {
-                                    id: createdLabel._id,
-                                    label_name: createdLabel.label_name
-                                }
+                                message: "All labels added successfully",
                             });
                         })
                         .catch(error => {

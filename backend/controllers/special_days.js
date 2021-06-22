@@ -51,7 +51,7 @@ exports.updateSpecialDays = (req, res, next) => {
 exports.getSpecialDays = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
-    const specialDaysQuery = SpecialDays.find();
+    const specialDaysQuery = SpecialDays.find({}).select('date + reason');
 
     if (pageSize && currentPage) {
         specialDaysQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
@@ -63,6 +63,7 @@ exports.getSpecialDays = (req, res, next) => {
             return SpecialDays.count();
         })
         .then(count => {
+
             res.status(200).json({
                 message: "SpecialDays fetched successfully!",
                 special_days: fetchedSpecialDays,
