@@ -7,9 +7,7 @@ const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
 const classRoutes  = require("./routes/class")
 const labelRoutes = require("./routes/label")
-const studentLevelZeroRoutes = require("./routes/student")
-const studentLevelFirstRoutes = require("./routes/student_level_1")
-const studentLevelTwoRoutes = require("./routes/student_level_2")
+const studentRoutes = require("./routes/student")
 const specialDayRoutes = require("./routes/special_days")
 const accountRoutes = require("./routes/account")
 
@@ -17,7 +15,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://Trung:Nostradamus753@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
+    "mongodb+srv://Trung:0125114735@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
   )
 //   .connect(
 //     "mongodb://127.0.0.1:27017/Gemmy"
@@ -54,7 +52,7 @@ app.use("/api/class", classRoutes);
 
 app.use("/api/label", labelRoutes);
 
-app.use("/api/student", studentLevelZeroRoutes);
+app.use("/api/student", studentRoutes);
 
 app.use("/api/special-days", specialDayRoutes);
 

@@ -12,8 +12,6 @@ function getEndDate(total_sessions, start_date) {
     
 }
 
-
-
 function remainingDaysFromCourseEndDate(end_date) {
     var today = new Date();
     return end_date.getDate() - today.getDate();

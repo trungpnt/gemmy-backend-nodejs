@@ -1,5 +1,11 @@
 const Student = require("../models/student");
 
+
+function calcOverBand(l,r,w,s){
+
+    return 1;
+}
+
 exports.createStudent = (req, res, next) => {
 
     var parent_info = null;
@@ -16,14 +22,10 @@ exports.createStudent = (req, res, next) => {
 
     // var is_attend_final_test_date = false;
 
-    // if (req.body.parent_info != null){
-    //     parent_info = req.body.parent_info;
-    //     is_under_care = true;
-    // }
-
-    // if (req.body.entry_test_result != null){
-    //     entry_test_result = req.body.entry_test_result;
-    // }
+    if (req.body.parent_info != null){
+        parent_info = req.body.parent_info;
+        is_under_care = true;
+    }
 
     if (req.body.friend_student_id_list != null){
         friend_student_id_list = req.body.friend_student_id_list;
@@ -59,6 +61,7 @@ exports.createStudent = (req, res, next) => {
         applied_offer : req.body.applied_offer,
 
         entry_test_result : req.body.entry_test_result,
+
         final_test_result: req.body.final_test_result
     });
 
@@ -66,14 +69,14 @@ exports.createStudent = (req, res, next) => {
         .save()
         .then( createdStudent => {
             res.status(201).json({
-                message: "StudentLevelZero added successfully",
+                message: "Student added successfully",
                 student_: createdStudent,
                 id: createdStudent._id
             });
         })
         .catch(error => {
             res.status(500).json({
-                message: "Creating a student-level-zero failed!"
+                message: "Creating a student failed!"
             });
         });
 };
@@ -146,7 +149,7 @@ exports.getStudents = (req, res, next) => {
         .then(count => {
             res.status(200).json({
                 message: "Student fetched successfully!",
-                students: fetchedStudentLevelZeros,
+                students: fetchedStudents,
                 max_students: count
             });
         })

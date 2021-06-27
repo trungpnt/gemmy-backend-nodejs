@@ -49,7 +49,7 @@ exports.updateLabel = (req, res, next) => {
             if (result.n > 0) {
                 res.status(200).json({ message: "Update successful!" });
             } else {
-                res.status(401).json({ message: "Not authorized!" });
+                res.status(401).json({ message: "Not authorized!"   });
             }
         })
         .catch(error => {
@@ -93,7 +93,9 @@ exports.getLabel = (req, res, next) => {
             if (label) {
                 res.status(200).json(label);
             } else {
-                res.status(404).json({ message: "Label not found!" });
+                res.status(404).json(
+                    { message: "Label not found!" }
+                );
             }
         })
         .catch(error => {
