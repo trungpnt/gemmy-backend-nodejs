@@ -12,16 +12,6 @@ exports.createStudent = (req, res, next) => {
     var friend_student_id_list = [];
     var is_under_care = false;
 
-    // var entry_test_result = null;
-    // var final_test_result = null;
-    // var current_class_code_enrolled = null;
-    // var is_reminded_before_entry_test_date = false;
-    // var is_reminded_before_final_test_date = false;
-
-    // var is_attend_entry_test_date = false;
-
-    // var is_attend_final_test_date = false;
-
     if (req.body.parent_info != null){
         parent_info = req.body.parent_info;
         is_under_care = true;
