@@ -282,7 +282,7 @@ exports.getClassTimeRange = (req, res, next) => {
     const currentPage = +req.query.page;
 
     const ClassQuery = Class.find({ is_active: true, remaining_slots: {$gt : 1} , }.select({student_list: 0}));
-
+    
     
     if (pageSize && currentPage) {
         ClassQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
@@ -320,7 +320,7 @@ exports.getFutureClasses = (req, res, next) => {
 
     const ClassQuery = Class.find();
 
-    
+
 
     if (pageSize && currentPage) {
         ClassQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
