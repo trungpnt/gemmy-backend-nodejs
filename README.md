@@ -4,8 +4,7 @@
 
 Backend management for a language center
 
-# IN CASE YOU WANT SYNCHRONIZE THE SERVER CONSTANTLY WITH CODE MODIFICATIONS
-
+# AUTOMATICALLY RESTART EXPRESS.JS SERVER WHEN CHANGES ARE MADE
 **inside the root directory:**
 
 `forever -w ./server.js`
