@@ -15,6 +15,8 @@ Backend management for a language center
 ** IF PORT 3000 IS IN USE : **
 
 `<netstat -ano | findstr :3000>`
+
+**THEN**
 `<TASKKILL /PID /F <PID here> >`
 
 
