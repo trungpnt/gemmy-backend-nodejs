@@ -109,3 +109,24 @@ exports.deleteSpecialDays = (req, res, next) => {
             });
         });
 };
+
+exports.getSpecialDaysInTime = (start_date, end_date, class_session) => {
+    let query = {
+        $match: {
+            date: {
+                "$cmp": [start_date, end_date],
+                "$dayOfWeek": {"$or":[class_session[0].day + 1, class_session[1].day + 1]}
+            },
+            day_session: {"$or":[class_session[0].day_session, class_session[1].day_session]}
+        }
+        // ,$count: "count"
+    };
+    const specialDaysQuery = SpecialDays.find({}).select('date + day_session + reason');
+
+    let fetchedSpecialDays;
+    specialDaysQuery
+        .then(documents => {
+            fetchedSpecialDays = documents;
+            return SpecialDays.count();
+        })
+};

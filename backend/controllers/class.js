@@ -8,8 +8,52 @@ function genClassCode(class_level, class_label, class_name) {
     return "".concat(year_digit, class_level, month, class_label, class_name);
 }
 
-function getEndDate(total_sessions, start_date) {
-    
+function addDays(start_date,days){
+    let end_date = new Date(start_date.valueOf());
+    end_date.setDate(end_date.getDate() + days);
+    return end_date;
+}
+function subDays(start_date,days){
+    let end_date = new Date(start_date.valueOf());
+    end_date.setDate(end_date.getDate() - days);
+    return end_date;
+}
+
+function getEndDate(start_date, total_sessions, class_session) {
+        //class_session format "2021-06-20T17:00:00.000Z"
+        //class_session = {'0': {'day_session': 'evening', 'day':'0'}, '1': {'day_session': 'evening', 'day':'3'}};
+        //đã handle trên front end ngày bắt đầu
+        let day_start = start_date.getDay();
+        // let flag_last_day = null;
+        let date_remain_in_start_week = null;
+        if (day_start === class_session[0].day){ 
+            date_remain_in_start_week = new Date(addDays(start_date, Number(class_session[1].day) - Number(class_session[0].day)));   
+        } 
+        else if (day_start === class_session[1].day){
+            date_remain_in_start_week = new Date(subDays(start_date, Number(class_session[1].day) - Number(class_session[0].day)));   
+        }
+
+        let total_weeks = 0;
+        let flag_even = null; 
+        if (total_sessions%2 === 0){
+            total_weeks = total_sessions/2;
+            flag_even = false;
+        } else {
+            total_weeks = Math.floor(total_sessions/2) + 1;
+            flag_even = true;
+        }
+        
+        let end_date = new Date();
+        if (flag_even === false){
+            end_date = new Date(addDays(date_remain_in_start_week, total_weeks * 7));
+        } else {
+            end_date = new Date(addDays(start_date, total_weeks * 7));
+        }
+        let number_special_day = specialDayController.getSpecialDaysInTime(start_date, end_date, class_session);
+        
+        let end_date_official = new Date(addDays(start_date, total_weeks * 7 + number_special_day));
+
+        return end_date_official;
 }
 
 function remainingDaysFromCourseEndDate(end_date) {
