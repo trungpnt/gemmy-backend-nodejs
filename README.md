@@ -8,16 +8,16 @@ Backend management for a language center
 
 **inside the root directory:**
 
-`<forever -w ./server.js>`
+`forever -w ./server.js`
 
 # PORT IN USE ISSUE:
 
 ** IF PORT 3000 IS IN USE : **
 
-`<netstat -ano | findstr :3000>`
+`netstat -ano | findstr :3000`
 
 **THEN**
-`<TASKKILL /PID /F <PID here> >`
+`TASKKILL /PID /F <PID here>  `
 
 
 
