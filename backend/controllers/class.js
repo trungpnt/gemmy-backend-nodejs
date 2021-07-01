@@ -320,7 +320,7 @@ exports.getFutureClasses = (req, res, next) => {
 
     const ClassQuery = Class.find();
 
-
+    
 
     if (pageSize && currentPage) {
         ClassQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
