@@ -36,7 +36,7 @@ exports.createUser = (req, res, next) => {
 
 exports.userLogin = (req, res, next) => {
   let fetchedUser;
-  User.findOne({ email: req.body.email })
+  User.findOne({ username: req.body.username })
     .then((user) => {
       if (!user) {
         return res.status(401).json({
@@ -55,7 +55,7 @@ exports.userLogin = (req, res, next) => {
       //add more logic for admin_role
       const token = jwt.sign(
         { email: fetchedUser.email, userId: fetchedUser._id },
-        process.env.JWT_KEY,
+        'securesecuresecuresecuresecuresecuresecure',
         { expiresIn: "1h" }
       );
       res.status(200).json({
@@ -65,6 +65,7 @@ exports.userLogin = (req, res, next) => {
       });
     })
     .catch((err) => {
+      console.log(err)
       return res.status(401).json({
         message: "Invalid authentication credentials!",
       });

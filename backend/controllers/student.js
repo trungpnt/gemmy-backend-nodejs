@@ -111,6 +111,7 @@ exports.createStudent = (req, res, next) => {
       res.status(500).json({
         message: "Creating a student failed!",
       });
+
     });
 };
 
