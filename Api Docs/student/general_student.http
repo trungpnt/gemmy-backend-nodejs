@@ -1,12 +1,37 @@
-const baseUrl = "http://localhost:3000/api";
+var baseUrl = "http://localhost:3000/api";
 
-GET https://{baseUrl}/api/endpoint HTTP/1.1
+GET {baseUrl}/student HTTP/1.1
 # Authorization: Bearer {{token}}
 
 
 POST {baseUrl}/student HTTP /1.1
 content-type: application/json
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
+[
+    {
+        "full_name": "",
+        "dob" : "",
+        "phone": "",
+        "email": "",
+        "facebook": "",
+        "bank_account_number":"042147204601",
+        "assigned_classes": [
+            {"class_code": "fewafowaeij"},
+            {"class_code": "fewafeawfeaw"}
+        ]
+
+    },
+    {
+        "full_name": "",
+        "dob" : "",
+        "phone": "",
+        "email": "",
+        "facebook": "",
+        "bank_account_number":"042147204601",
+        "assigned_classes": [
+            {"class_code": "fewafowaeij"},
+            {"class_code": "fewafeawfeaw"}
+        ]
+        
+    }
+]
+
