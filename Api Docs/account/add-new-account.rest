@@ -6,45 +6,12 @@ const url = "http://localhost:8080/add-account"
 POST url HTTP/1.1
 [
     {
-        username: "",
-        password : "",
-        role: "",
+        "username": "",
+        "password" : "",
+        "user_id": "",
     }
 ]
 
-GET url HTTP/1.1
-[
-    {
-        username: "",
-        password : "",
-        role: "",
-    }
-]
 
-DELETE url HTTP/1.1
-[
-    {
-        username: "",
-        password : "",
-        role: "",
-    }
-]
 
-PUT url HTTP/1.1
-[
-    {
-        username: "",
-        password : "",
-        role: "",
-    }
-]
-
-//update 1 phan 
-PATCH url HTTP/1.1
-[
-    {
-        userId: "ObjectId"
-        role: "",
-    }
-]
 

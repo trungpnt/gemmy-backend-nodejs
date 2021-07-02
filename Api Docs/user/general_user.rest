@@ -1,0 +1,47 @@
+Authentication : super-admin 
+Authorization: super-admin ( authorities )
+
+const url = "http://localhost:8080/teacher"
+
+
+POST url HTTP/1.1
+[
+    {
+        "full_name": "",
+        "dob" : "",
+        "phone": "",
+        "email": "",
+        "facebook": "",
+        "bank_account_number":"042147204601",
+        "assigned_classes": [
+            {"class_code": "fewafowaeij"},
+            {"class_code": "fewafeawfeaw"}
+        ]
+
+    },
+    {
+        "full_name": "",
+        "dob" : "",
+        "phone": "",
+        "email": "",
+        "facebook": "",
+        "bank_account_number":"042147204601",
+        "assigned_classes": [
+            {"class_code": "fewafowaeij"},
+            {"class_code": "fewafeawfeaw"}
+        ]
+        
+    }
+]
+
+GET url HTTP/1.1
+
+
+DELETE url HTTP/1.1
+
+PUT url HTTP/1.1
+
+
+//update 1 phan 
+PATCH url HTTP/1.1
+
