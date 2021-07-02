@@ -24,7 +24,9 @@ const calcOverBand = (scoreCollections) => {
     portion_of_overallScore < 1 &&
     portion_of_overallScore != 0
   ) {
+    
     return Math.round(overall_band_score);
+
   } else if (portion_of_overallScore === 0.5) {
     return overall_band_score;
   } else if (portion_of_overallScore < 0.75 && portion_of_overallScore > 0.5) {
