@@ -1,5 +1,7 @@
 const Class = require("../models/class");
+
 const specialDayController = require("./special_days");
+
 function genClassCode(class_level, class_label, class_name) {
     var today = new Date();
     //2145MARApreIelts
@@ -25,10 +27,10 @@ function getEndDate(start_date, total_sessions, class_session) {
         //đã handle trên front end ngày bắt đầu
         start_date = new Date();
         total_sessions = 5;
-        class_session = {'0': {'day_session': 'evening', 'day':'5'}, '1': {'day_session': 'evening', 'day':'6'}}; //monday, thurday
+        class_session = {'0': {'day_session': 'evening', 'day':'6'}, '1': {'day_session': 'evening', 'day':'0'}}; //monday, thurday
         let day_start = start_date.getDay();
         
-        let date_remain_in_start_week = null;
+        let date_remain_in_start_week = null; // the other date in start week. 
         if (day_start === parseInt(class_session[0].day)){ 
             date_remain_in_start_week = new Date(addDays(start_date, Number(class_session[1].day) - Number(class_session[0].day)));   
         } 
@@ -59,7 +61,7 @@ function getEndDate(start_date, total_sessions, class_session) {
         } else {
             end_date = new Date(addDays(start_date, total_weeks * 7));
         }
-        let number_special_day = specialDayController.getSpecialDaysInTime(start_date, end_date, class_session);
+        let number_special_day = specialDayController.getSpecialDaysInTimeRange(start_date, end_date, class_session);
         
         let end_date_official = new Date(addDays(start_date, total_weeks * 7 + number_special_day));
 
@@ -75,7 +77,7 @@ exports.createClass = (req, res, next) => {
     var date_end = getEndDate(1,1,1);
 
     var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
-
+    
     Class.findOne({ class_code: class_code })
         .then(result => {
             if (result) {
