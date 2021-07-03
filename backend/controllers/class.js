@@ -106,7 +106,7 @@ exports.createClass = (req, res, next) => {
                         res.status(201).json({
                             message: "Class added successfully",
                             created_class: createdClass
-                        });
+                        })
                     })
                     .catch(error => {
                         res.status(500).json({

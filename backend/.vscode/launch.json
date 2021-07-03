@@ -9,9 +9,11 @@
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": [
-                "<node_internals>/**"
+                "<node_internals>/**",
+                "inspector_async_hook.js",
+                "async_hooks.js"
             ],
-            "program": "${file}"
+            "program": "${workspaceFolder}\\server.js"
         }
     ]
 }

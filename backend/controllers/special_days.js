@@ -53,19 +53,20 @@ exports.getSpecialDays = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
 
-    const specialDaysQuery = SpecialDays.find({}).select('date + day_session + reason');
+    // const specialDaysQuery = SpecialDays.find({}).select('date + day_session + reason');
+    const specialDaysQuery = SpecialDays.find();
 
     if (pageSize && currentPage) {
         specialDaysQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
     }
     let fetchedSpecialDays;
+
     specialDaysQuery
         .then(documents => {
             fetchedSpecialDays = documents;
             return SpecialDays.count();
         })
         .then(count => {
-
             res.status(200).json({
                 message: "SpecialDays fetched successfully!",
                 special_days: fetchedSpecialDays,
@@ -136,4 +137,25 @@ exports.getSpecialDaysInTimeRange = (start_date, end_date, class_session) => {
         }).catch(error => {
             return "fail to get number of special days";
         });
+
+
+        // let fetchedSpecialDays;
+        // specialDaysQuery
+        //     .then(documents => {
+        //         fetchedSpecialDays = documents;
+        //         return SpecialDays.count();
+        //     })
+        //     .then(count => {
+    
+        //         res.status(200).json({
+        //             message: "SpecialDays fetched successfully!",
+        //             special_days: fetchedSpecialDays,
+        //             max_special_days: count
+        //         });
+        //     })
+        //     .catch(error => {
+        //         res.status(500).json({
+        //             message: "Fetching special days failed!"
+        //         });
+        //     });
 };
