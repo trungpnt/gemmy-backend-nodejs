@@ -19,7 +19,7 @@ Backend management for a language center
 
 **THEN**
 
-`TASKKILL /PID /F <PID here>`
+`TASKKILL /PID <PID here> /F `
 
 
 
