@@ -5,6 +5,7 @@ exports.createSpecialDays = (req, res, next) => {
     for(var i = 0; i < req.body.length; i++){
         const specialDays = new SpecialDays({
             date: req.body[i].date,
+            day_session:  req.body[i].day_session,
             reason: req.body[i].reason,
         });
         specialDays
@@ -121,7 +122,7 @@ exports.getSpecialDaysInTime = (start_date, end_date, class_session) => {
         }
         // ,$count: "count"
     };
-    const specialDaysQuery = SpecialDays.find({}).select('date + day_session + reason');
+    const specialDaysQuery = SpecialDays.find(query).select('date + day_session + reason');
 
     let fetchedSpecialDays;
     specialDaysQuery
