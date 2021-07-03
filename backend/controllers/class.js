@@ -1,5 +1,5 @@
 const Class = require("../models/class");
-
+const specialDayController = require("./special_days");
 function genClassCode(class_level, class_label, class_name) {
     var today = new Date();
     //2145MARApreIelts
@@ -23,15 +23,24 @@ function getEndDate(start_date, total_sessions, class_session) {
         //class_session format "2021-06-20T17:00:00.000Z"
         //class_session = {'0': {'day_session': 'evening', 'day':'0'}, '1': {'day_session': 'evening', 'day':'3'}};
         //đã handle trên front end ngày bắt đầu
+        start_date = new Date();
+        total_sessions = 5;
+        class_session = {'0': {'day_session': 'evening', 'day':'5'}, '1': {'day_session': 'evening', 'day':'6'}}; //monday, thurday
         let day_start = start_date.getDay();
-        // let flag_last_day = null;
+        
         let date_remain_in_start_week = null;
-        if (day_start === class_session[0].day){ 
+        if (day_start === parseInt(class_session[0].day)){ 
             date_remain_in_start_week = new Date(addDays(start_date, Number(class_session[1].day) - Number(class_session[0].day)));   
         } 
-        else if (day_start === class_session[1].day){
+        else if (day_start === parseInt(class_session[1].day)){
             date_remain_in_start_week = new Date(subDays(start_date, Number(class_session[1].day) - Number(class_session[0].day)));   
         }
+        // else if(day_start < parseInt(class_session[0].day)){
+            
+        // }
+        // else if(day_start > parseInt(class_session[0].day)){
+
+        // }
 
         let total_weeks = 0;
         let flag_even = null; 
@@ -39,7 +48,8 @@ function getEndDate(start_date, total_sessions, class_session) {
             total_weeks = total_sessions/2;
             flag_even = false;
         } else {
-            total_weeks = Math.floor(total_sessions/2) + 1;
+            // total_weeks = Math.floor(total_sessions/2) + 1;
+            total_weeks = Math.floor(total_sessions/2);
             flag_even = true;
         }
         
@@ -62,6 +72,7 @@ function remainingDaysFromCourseEndDate(end_date) {
 }
 
 exports.createClass = (req, res, next) => {
+    var date_end = getEndDate(1,1,1);
 
     var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
 
