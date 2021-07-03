@@ -52,7 +52,7 @@ exports.updateSpecialDays = (req, res, next) => {
 exports.getSpecialDays = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
-    const specialDaysQuery = SpecialDays.find({}).select('date + reason');
+    const specialDaysQuery = SpecialDays.find({}).select('date + day_session + reason');
 
     if (pageSize && currentPage) {
         specialDaysQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
@@ -111,12 +111,14 @@ exports.deleteSpecialDays = (req, res, next) => {
         });
 };
 
-exports.getSpecialDaysInTime = (start_date, end_date, class_session) => {
+exports.getSpecialDaysInTimeRange = (start_date, end_date, class_session) => {
+    class_session[0].day = parseInt(class_session[0].day) + 1;
+    class_session[1].day = parseInt(class_session[1].day) + 1;
     let query = {
         $match: {
             date: {
                 "$cmp": [start_date, end_date],
-                "$dayOfWeek": {"$or":[class_session[0].day + 1, class_session[1].day + 1]}
+                "$dayOfWeek": {"$or":[class_session[0].day, class_session[1].day]}
             },
             day_session: {"$or":[class_session[0].day_session, class_session[1].day_session]}
         }
@@ -129,5 +131,7 @@ exports.getSpecialDaysInTime = (start_date, end_date, class_session) => {
         .then(documents => {
             fetchedSpecialDays = documents;
             return SpecialDays.count();
-        })
+        }).catch(error => {
+            return "fail to get number of special days";
+        });
 };
