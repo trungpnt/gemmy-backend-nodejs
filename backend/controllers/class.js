@@ -1,5 +1,7 @@
 const Class = require("../models/class");
+
 const specialDayController = require("./special_days");
+
 function genClassCode(class_level, class_label, class_name) {
     var today = new Date();
     //2145MARApreIelts
@@ -75,7 +77,7 @@ exports.createClass = (req, res, next) => {
     var date_end = getEndDate(1,1,1);
 
     var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
-
+    
     Class.findOne({ class_code: class_code })
         .then(result => {
             if (result) {

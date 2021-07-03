@@ -52,7 +52,7 @@ exports.updateSpecialDays = (req, res, next) => {
 exports.getSpecialDays = (req, res, next) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
-    const specialDaysQuery = SpecialDays.find({}).select('date + reason');
+    const specialDaysQuery = SpecialDays.find({}).select('date + reason + day_session');
 
     if (pageSize && currentPage) {
         specialDaysQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
@@ -130,4 +130,7 @@ exports.getSpecialDaysInTime = (start_date, end_date, class_session) => {
             fetchedSpecialDays = documents;
             return SpecialDays.count();
         })
+        .catch(error =>{
+            return "";
+        });
 };
