@@ -5,7 +5,6 @@
 //if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
 //otherwise, 1 session is counted, set the date_so_far to this new date
 
-
 const SpecialDays = require("../../models/special_days");
 
 const specialDaysQuery = SpecialDays.find();
@@ -104,6 +103,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 exports.get_class_end_date =  (start_date, total_session, class_session) => {
+  
   bubble_sort(special_days);
   //start date takes 1 session
   total_session--;
