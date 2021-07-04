@@ -71,26 +71,60 @@ function binary_search_in_dates(date_to_find, dates, low, high) {
   }
 }
 
-
 //add 1 to current day
 //constantly check if this day matches 1 element in the day_session list
-function get_next_matched_day(current_date, day_session) {
-  
+
+//this function will return the numeric value for the week day
+function get_numeric_given_day_in_week(given_day,days){
+  for(var i = 0, n = days.length; i < n; i++){
+    if(given_day === days[i]){
+      return i;
+    }
+  }
+}
+
+function get_next_matched_day(date_so_far, class_session) {
+  let numeric_day = -1;
+  do{
+    date_so_far.setDate(date.date_so_far.getDay() + 1);
+    
+    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    for(var i = 0, n = class_session.length; i < n; i++){
+      numeric_day = get_numeric_given_day_in_week(class_session[i].day, days);
+      if(date_so_far.getDay() == numeric_day){
+
+      }
+    }
+  }while(true);
 }
 
 //for each start date, construct the next matched date with the day_session's value in class
 //if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
 //otherwise, 1 session is counted, set the date_so_far to this new date
-function get_class_end_date( start_date, total_session, special_days, day_session ) {
-  let sorted_special_days = bubble_sort( special_days );
-  let current_date = start_date;
-  while ( total_session != 0) {
-    new_date = get_next_matched_day (current_date);
-    if( binary_search_in_dates ( new_date, special_days, 0, special_days.length )){
-      get_next_matched_day( new_date, day_session);
+function get_class_end_date(
+  start_date,
+  total_session,
+  special_days,
+  class_session
+) {
+  
+  let sorted_special_days = bubble_sort(special_days);
+  //start date takes 1 session
+  total_session--;
+
+  let date_so_far = get_next_matched_day(start_date,class_session);
+  while (total_session != 0) {
+    if (
+      binary_search_in_dates(
+        new_date,
+        sorted_special_days,
+        0,
+        sorted_special_days.length
+      )
+    ) {
+      date_so_far = get_next_matched_day(new_date, class_session);
     } 
-    else{
-      current_date = new_date;
+    else {
       total_session--;
     }
   }
