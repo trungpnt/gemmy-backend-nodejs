@@ -14,10 +14,10 @@ const accountRoutes = require("./routes/account");
 const app = express();
 
 mongoose
-  // .connect(
-  //   "mongodb+srv://Trung:0125114735@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
-  // )
-  .connect("mongodb://127.0.0.1:27017/Gemmy")
+  .connect(
+    "mongodb+srv://Trung:0125114735@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
+  )
+  // .connect("mongodb://127.0.0.1:27017/Gemmy")
   .then(() => {
     console.log("Connected to database!");
   })

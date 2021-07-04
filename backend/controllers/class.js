@@ -15,6 +15,7 @@ function addDays(start_date,days){
     end_date.setDate(end_date.getDate() + days);
     return end_date;
 }
+
 function subDays(start_date,days){
     let end_date = new Date(start_date.valueOf());
     end_date.setDate(end_date.getDate() - days);
@@ -332,8 +333,6 @@ exports.getFutureClasses = (req, res, next) => {
     const currentPage = +req.query.page;
 
     const ClassQuery = Class.find();
-
-
 
     if (pageSize && currentPage) {
         ClassQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
