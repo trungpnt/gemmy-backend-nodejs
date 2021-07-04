@@ -37,7 +37,7 @@ function bubble_sort(dates) {
   }
 }
 
-//find all special days
+//find all special days, exclude _id fields
 let special_days = SpecialDays.find({}, function (err, specialDays) {
   if (err) return handleError(err);
 
@@ -75,7 +75,9 @@ function binary_search_in_dates(date_to_find, dates, low, high) {
 //constantly check if this day matches 1 element in the day_session list
 
 //this function will return the numeric value for the week day
-function get_numeric_given_day_in_week(given_day,days){
+//Sun - Sar <=> 0 - 6
+function get_numeric_given_day_in_week(given_day){
+  var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
   for(var i = 0, n = days.length; i < n; i++){
     if(given_day === days[i]){
       return i;
@@ -86,16 +88,16 @@ function get_numeric_given_day_in_week(given_day,days){
 function get_next_matched_day(date_so_far, class_session) {
   let numeric_day = -1;
   do{
+    //assign next date's value
     date_so_far.setDate(date.date_so_far.getDay() + 1);
     
-    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     for(var i = 0, n = class_session.length; i < n; i++){
-      numeric_day = get_numeric_given_day_in_week(class_session[i].day, days);
+      numeric_day = get_numeric_given_day_in_week(class_session[i].day);
       if(date_so_far.getDay() == numeric_day){
         return date_so_far;
       }
       else{
-        
+
       }
     }
   }while(true);
@@ -104,12 +106,7 @@ function get_next_matched_day(date_so_far, class_session) {
 //for each start date, construct the next matched date with the day_session's value in class
 //if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
 //otherwise, 1 session is counted, set the date_so_far to this new date
-function get_class_end_date(
-  start_date,
-  total_session,
-  special_days,
-  class_session
-) {
+function get_class_end_date(start_date, total_session, special_days, class_session) {
   
   let sorted_special_days = bubble_sort(special_days);
   //start date takes 1 session
@@ -117,14 +114,7 @@ function get_class_end_date(
 
   let date_so_far = get_next_matched_day(start_date,class_session);
   while (total_session != 0) {
-    if (
-      binary_search_in_dates(
-        new_date,
-        sorted_special_days,
-        0,
-        sorted_special_days.length
-      )
-    ) {
+    if (binary_search_in_dates(new_date,sorted_special_days,0,sorted_special_days.length)) {
       date_so_far = get_next_matched_day(new_date, class_session);
     } 
     else {
