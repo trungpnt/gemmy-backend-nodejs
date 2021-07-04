@@ -30,7 +30,7 @@ const classSchema = mongoose.Schema({
     
     class_session: [classSessionSchema],
     student_list: [studentSchema],
-    class_noteS: { type: String, required: false },
+    class_notes: { type: String, required: false },
     
     //slot-management
     current_total_students: {type: Number, required: true},
