@@ -5,7 +5,7 @@ exports.createSpecialDays = (req, res, next) => {
     for(var i = 0; i < req.body.length; i++){
         const specialDays = new SpecialDays({
             date: req.body[i].date,
-            day_session:  req.body[i].day_session,
+            day_session: req.body[i].day_session,
             reason: req.body[i].reason,
         });
         specialDays
@@ -60,13 +60,13 @@ exports.getSpecialDays = (req, res, next) => {
         specialDaysQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
     }
     let fetchedSpecialDays;
-
     specialDaysQuery
         .then(documents => {
             fetchedSpecialDays = documents;
             return SpecialDays.count();
         })
         .then(count => {
+
             res.status(200).json({
                 message: "SpecialDays fetched successfully!",
                 special_days: fetchedSpecialDays,
@@ -108,7 +108,7 @@ exports.deleteSpecialDays = (req, res, next) => {
         })
         .catch(error => {
             res.status(500).json({
-                message: "Deleting specialdayss failed!"
+                message: "Deleting special_days failed!"
             });
         });
 };
@@ -138,25 +138,5 @@ exports.getSpecialDaysInTimeRange = (start_date, end_date, class_session) => {
             return "fail to get number of special days";
         });
 
-        
 
-        // let fetchedSpecialDays;
-        // specialDaysQuery
-        //     .then(documents => {
-        //         fetchedSpecialDays = documents;
-        //         return SpecialDays.count();
-        //     })
-        //     .then(count => {
-    
-        //         res.status(200).json({
-        //             message: "SpecialDays fetched successfully!",
-        //             special_days: fetchedSpecialDays,
-        //             max_special_days: count
-        //         });
-        //     })
-        //     .catch(error => {
-        //         res.status(500).json({
-        //             message: "Fetching special days failed!"
-        //         });
-        //     });
 };
