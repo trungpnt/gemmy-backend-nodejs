@@ -19,7 +19,7 @@ mongoose
     console.log("Connection failed!");
   });
 
-function bubbleSort(dates) {
+function bubble_sort(dates) {
   flag = false;
   var n = dates.length;
   for (var i = 0; i < n; i++) {
@@ -35,15 +35,6 @@ function bubbleSort(dates) {
       break;
     }
   }
-}
-
-//omit props
-function omit(obj, ...props) {
-  const result = { ...obj };
-  props.forEach(function (prop) {
-    delete result[prop];
-  });
-  return result;
 }
 
 //find all special days
@@ -65,32 +56,42 @@ setTimeout(() => {
   console.log(special_days);
 }, 5000);
 
-function getNextMatchedDate(current_date, day_session) {
-  day = current_date.getDay();
-}
-
-function binarySearchInDates(date_to_find, dates, low, high) {
+function binary_search_in_dates(date_to_find, dates, low, high) {
   if (low > high) {
     return false;
   }
   mid = Math.floor((low + high) / 2);
-  if (dates[mid] == date_to_find) {
+  if (dates[mid].getTime() === date_to_find.getTime()) {
     return true;
   }
-  if (dates[mid] > date_to_find) {
-    return binarySearchInDates(date_to_find, dates, low, mid - 1);
+  if (dates[mid].getTime() > date_to_find.getTime()) {
+    return binary_search_in_dates(date_to_find, dates, low, mid - 1);
   } else {
-    return binarySearchInDates(date_to_find, dates, mid + 1, high);
+    return binary_search_in_dates(date_to_find, dates, mid + 1, high);
   }
 }
+
+
+//add 1 to current day
+//constantly check if this day matches 1 element in the day_session list
+function get_next_matched_day(current_date, day_session) {
+  
+}
+
 //for each start date, construct the next matched date with the day_session's value in class
 //if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
 //otherwise, 1 session is counted, set the date_so_far to this new date
-function getClassEndDate(start_date, total_session, special_days) {
-  let sorted_special_days = bubbleSort(special_days);
+function get_class_end_date( start_date, total_session, special_days, day_session ) {
+  let sorted_special_days = bubble_sort( special_days );
   let current_date = start_date;
-  while (true) {
-    getNextMatchedDate(current_date);
-    if(current_date+ =  )
+  while ( total_session != 0) {
+    new_date = get_next_matched_day (current_date);
+    if( binary_search_in_dates ( new_date, special_days, 0, special_days.length )){
+      get_next_matched_day( new_date, day_session);
+    } 
+    else{
+      current_date = new_date;
+      total_session--;
+    }
   }
 }
