@@ -13,7 +13,7 @@ let special_days;
 
 //find all special days, exclude _id fields
 specialDaysQuery
-  .then((specialDays) => {
+  .then( (specialDays) => {
     special_days = specialDays.map((specialDay) => {
       return specialDay.toObject();
     });
@@ -22,8 +22,11 @@ specialDaysQuery
     console.log("Fetching special days failed!"); 
   });
 
+//this bubblle sort func has to be async to receive the argument ( drawn from db query !)
+//wtf is this trick??!?!??!?!
 async function bubble_sort(dates) {
-  await sleep(4000);
+  
+  // await sleep(4000);
   flag = false;
   var n = dates.length;
   for (var i = 0; i < n; i++) {

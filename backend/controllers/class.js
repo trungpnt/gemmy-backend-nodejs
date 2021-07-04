@@ -110,9 +110,7 @@ exports.createClass =  (req, res, next) => {
     req.body.total_sessions,
     req.body.class_session
   );
-  
-  console.log(calc_date_end);
-
+    
   const classModel = new Class({
     class_name: req.body.class_name,
     class_code: check_class_code,
