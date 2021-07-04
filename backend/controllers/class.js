@@ -77,11 +77,11 @@ function remainingDaysFromCourseEndDate(end_date) {
 }
 
 exports.createClass = (req, res, next) => {
-    var date_end = getEndDate(1,1,1);
-
-    var class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
+    //var date_end = getEndDate(1,1,1);
     
-    Class.findOne({ class_code: class_code })
+    var check_class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
+    
+    Class.findOne({ class_code: check_class_code })
         .then(result => {
             if (result) {
                 res.status(200).json({ message: "The class_code with the same name already exists !" });

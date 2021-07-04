@@ -113,16 +113,19 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
   condition_decisor = 0;
   let date_so_far;
   while (total_session != 0) {
-    //if the date is not in special_days list
-    //it takes 1 session
+    
     if(condition_decisor == 0){
+      //for the first time this loop is triggered, calculate the next date given start_date
       date_so_far = get_next_matched_day(start_date,class_session);
     }
     else{
+      //any other time, dynamically pass the current date as argument 
       date_so_far = get_next_matched_day(date_so_far,class_session);
       condition_decisor = 1;
     }
-
+    
+    //if the date is not in special_days list
+    //it takes 1 session
     if (!binary_search_in_dates(date_so_far,sorted_special_days,0,sorted_special_days.length)) {
       total_session--;
     }
