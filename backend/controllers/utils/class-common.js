@@ -13,7 +13,7 @@ let special_days;
 
 //find all special days, exclude _id fields
 specialDaysQuery
-  .then( (specialDays) => {
+  .then((specialDays) => {
     special_days = specialDays.map((specialDay) => {
       return specialDay.toObject();
     });
@@ -22,10 +22,9 @@ specialDaysQuery
     console.log("Fetching special days failed!"); 
   });
 
-//this bubblle sort func has to be async to receive the argument ( drawn from db query !)
-//wtf is this trick??!?!??!?!
-async function bubble_sort(dates) {
-  await sleep(5000);
+
+function bubble_sort(dates) {
+  //await sleep(5000);
   dates = special_days;
   flag = false;
   var n = dates.length;
@@ -86,7 +85,7 @@ function get_next_matched_day(date_so_far, class_session) {
   let numeric_day = -1;
   do {
     //find next date's value ( +1) and reassign to the same date_so_far variable
-    date_so_far.setDate(date_so_far.getDay() + 1);
+    date_so_far.setDate(date_so_far.getDate() + 1);
 
     for (var i = 0, n = class_session.length; i < n; i++) {
       numeric_day = get_numeric_given_day_in_week(class_session[i].day);
@@ -105,7 +104,6 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 exports.get_class_end_date =  (start_date, total_session, class_session) => {
-  
   bubble_sort(special_days);
   //start date takes 1 session
   total_session--;
@@ -118,10 +116,10 @@ exports.get_class_end_date =  (start_date, total_session, class_session) => {
     if (condition_decisor == 0) {
       //for the first time this loop is triggered, calculate the next date given start_date
       date_so_far = get_next_matched_day(iso_start_date, class_session);
+      condition_decisor = 1;
     } else {
       //any other time, dynamically pass the current date as argument
       date_so_far = get_next_matched_day(date_so_far, class_session);
-      condition_decisor = 1;
     }
     //if the date is not in special_days list
     //it takes 1 session
