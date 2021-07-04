@@ -92,7 +92,10 @@ function get_next_matched_day(date_so_far, class_session) {
     for(var i = 0, n = class_session.length; i < n; i++){
       numeric_day = get_numeric_given_day_in_week(class_session[i].day, days);
       if(date_so_far.getDay() == numeric_day){
-
+        return date_so_far;
+      }
+      else{
+        
       }
     }
   }while(true);
