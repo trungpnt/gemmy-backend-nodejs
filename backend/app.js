@@ -19,7 +19,7 @@ mongoose
   )
   // .connect("mongodb://127.0.0.1:27017/Gemmy")
   .then(() => {
-    console.log("Connected to database!");
+    console.log("Connected to database!!!!!");
   })
   .catch(() => {
     console.log("Connection failed!");

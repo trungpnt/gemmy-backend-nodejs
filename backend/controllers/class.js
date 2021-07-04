@@ -88,7 +88,7 @@ exports.createClass = (req, res, next) => {
             } else {
                 const classModel = new Class({
                     class_name: req.body.class_name,
-                    class_code: class_code,
+                    class_code: css_code,
                     slots: req.body.slots,
                     tuition_fee: req.body.tuition_fee,
                     total_sessions: req.body.total_sessions,
@@ -96,10 +96,10 @@ exports.createClass = (req, res, next) => {
                     
                     note: req.body.note,
                     is_active: req.body.is_active,
-                    
+
                     class_session: req.body.class_session,
                     //begins calling the get_end_date function 
-                    date_end : class_common.get_class_end_date(date_start,total_sessions,class_session),
+                    //date_end : class_common.get_class_end_date(date_start,total_sessions,class_session),
                     //ends
                     student_list: req.body.student_list,
                     //slots management - calculation

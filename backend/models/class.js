@@ -7,6 +7,13 @@ const classSessionSchema = new mongoose.Schema({
     skills: [String]
 });
 
+const studentSchema = new mongoose.Schema({
+    student_id: String,
+    amount_paid: Number,
+    applied_offer: String,
+    offer_detail: String
+});
+
 const classSchema = mongoose.Schema({
 
     class_name: { type: String, required: true },
@@ -22,9 +29,9 @@ const classSchema = mongoose.Schema({
     is_active: { type: Boolean, required: true },
     
     class_session: [classSessionSchema],
-    student_list: {type: [String]},
-    class_note: { type: String, required: false },
-
+    student_list: [studentSchema],
+    class_noteS: { type: String, required: false },
+    
     //slot-management
     current_total_students: {type: Number, required: true},
     remaining_slots: {type: Number, required: true}

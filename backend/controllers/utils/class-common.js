@@ -8,16 +8,16 @@
 const mongoose = require("mongoose");
 const SpecialDays = require("../../models/special_days");
 
-mongoose
-  .connect(
-    "mongodb+srv://Trung:0125114735@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
-  )
-  .then(() => {
-    console.log("Connected to database!");
-  })
-  .catch(() => {
-    console.log("Connection failed!");
-  });
+// mongoose
+//   .connect(
+//     "mongodb+srv://Trung:0125114735@cluster0.nhi8c.mongodb.net/Gemmy?retryWrites=true&w=majority"
+//   )
+//   .then(() => {
+//     console.log("Connected to database!");
+//   })
+//   .catch(() => {
+//     console.log("Connection failed!");
+//   });
 
 function bubble_sort(dates) {
   flag = false;
@@ -52,9 +52,9 @@ let special_days = SpecialDays.find({}, function (err, specialDays) {
   });
 });
 
-setTimeout(() => {
-  console.log(special_days);
-}, 5000);
+// setTimeout(() => {
+//   console.log(special_days);
+// }, 5000);
 
 function binary_search_in_dates(date_to_find, dates, low, high) {
   if (low > high) {
