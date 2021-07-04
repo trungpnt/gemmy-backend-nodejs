@@ -25,8 +25,8 @@ specialDaysQuery
 //this bubblle sort func has to be async to receive the argument ( drawn from db query !)
 //wtf is this trick??!?!??!?!
 async function bubble_sort(dates) {
-  
-  // await sleep(4000);
+  await sleep(5000);
+  dates = special_days;
   flag = false;
   var n = dates.length;
   for (var i = 0; i < n; i++) {
