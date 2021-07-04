@@ -106,13 +106,14 @@ function get_next_matched_day(date_so_far, class_session) {
 //for each start date, construct the next matched date with the day_session's value in class
 //if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
 //otherwise, 1 session is counted, set the date_so_far to this new date
-function get_class_end_date(start_date, total_session, special_days, class_session) {
-  
-  let sorted_special_days = bubble_sort(special_days);
+
+//sort dates to perform binary search
+let sorted_special_days = bubble_sort(special_days);
+function get_class_end_date(start_date, total_session, class_session) {
   //start date takes 1 session
   total_session--;
-
   let date_so_far = get_next_matched_day(start_date,class_session);
+
   while (total_session != 0) {
     if (binary_search_in_dates(new_date,sorted_special_days,0,sorted_special_days.length)) {
       date_so_far = get_next_matched_day(new_date, class_session);
