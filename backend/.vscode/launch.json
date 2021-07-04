@@ -5,17 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach by Process ID",
-            "processId": "${command:PickProcess}",
-            "request": "attach",
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Launch Program",
             "skipFiles": [
-                "<node_internals>/**"
+                "<node_internals>/**",
+                "inspector_async_hook.js",
+                "async_hooks.js"
             ],
-            "type": "pwa-node"
-        },
-
-        {
-            
+            "program": "${workspaceFolder}\\server.js"
         }
     ]
 }

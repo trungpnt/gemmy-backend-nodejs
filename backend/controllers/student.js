@@ -24,7 +24,7 @@ const calcOverBand = (scoreCollections) => {
     portion_of_overallScore < 1 &&
     portion_of_overallScore != 0
   ) {
-    
+
     return Math.round(overall_band_score);
 
   } else if (portion_of_overallScore === 0.5) {
@@ -99,6 +99,8 @@ exports.createStudent = (req, res, next) => {
   student.entry_test_result.overall_band_score = calcOverBand(
     student.entry_test_result
   );
+    
+  student.final_test_result.overall_band_score = calcOverBand(student.final_test_result);
 
   student
     .save()
