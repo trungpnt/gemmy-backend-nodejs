@@ -2,6 +2,8 @@ const Class = require("../models/class");
 
 const specialDayController = require("./special_days");
 
+const class_common = require("../controllers/utils/class-common");
+
 function genClassCode(class_level, class_label, class_name) {
     var today = new Date();
     //2145MARApreIelts
@@ -91,11 +93,14 @@ exports.createClass = (req, res, next) => {
                     tuition_fee: req.body.tuition_fee,
                     total_sessions: req.body.total_sessions,
                     date_start: req.body.date_start,
-                    date_end: "06/05/1990",
+                    
                     note: req.body.note,
                     is_active: req.body.is_active,
-
+                    
                     class_session: req.body.class_session,
+                    //begins calling the get_end_date function 
+                    date_end : class_common.get_class_end_date(date_start,total_sessions,class_session),
+                    //ends
                     student_list: req.body.student_list,
                     //slots management - calculation
                     current_total_students: req.body.student_list.length,

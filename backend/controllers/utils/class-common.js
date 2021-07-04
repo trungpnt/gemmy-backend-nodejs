@@ -106,7 +106,7 @@ function get_next_matched_day(date_so_far, class_session) {
 
 //sort dates to perform binary search
 let sorted_special_days = bubble_sort(special_days);
-function get_class_end_date(start_date, total_session, class_session) {
+exports.get_class_end_date = (start_date, total_session, class_session) => {
   //start date takes 1 session
   total_session--;
   
