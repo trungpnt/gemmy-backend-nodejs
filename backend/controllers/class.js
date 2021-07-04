@@ -78,52 +78,40 @@ function remainingDaysFromCourseEndDate(end_date) {
 
 exports.createClass = (req, res, next) => {
     //var date_end = getEndDate(1,1,1);
-    
+
     var check_class_code = genClassCode(req.body.class_level, req.body.class_label, req.body.class_name);
     
-    Class.findOne({ class_code: check_class_code })
-        .then(result => {
-            if (result) {
-                res.status(200).json({ message: "The class_code with the same name already exists !" });
-            } else {
-                const classModel = new Class({
-                    class_name: req.body.class_name,
-                    class_code: css_code,
-                    slots: req.body.slots,
-                    tuition_fee: req.body.tuition_fee,
-                    total_sessions: req.body.total_sessions,
-                    date_start: req.body.date_start,
-                    
-                    note: req.body.note,
-                    is_active: req.body.is_active,
+    const classModel = new Class({
+        class_name: req.body.class_name,
+        class_code: check_class_code,
+        slots: req.body.slots,
+        tuition_fee: req.body.tuition_fee,
+        total_sessions: req.body.total_sessions,
+        date_start: req.body.date_start,
+        
+        note: req.body.note,
+        is_active: req.body.is_active,
 
-                    class_session: req.body.class_session,
-                    //begins calling the get_end_date function 
-                    //date_end : class_common.get_class_end_date(date_start,total_sessions,class_session),
-                    //ends
-                    student_list: req.body.student_list,
-                    //slots management - calculation
-                    current_total_students: req.body.student_list.length,
-                    remaining_slots: req.body.slots - req.body.student_list.length
-                });
-                classModel
-                    .save()
-                    .then(createdClass => {
-                        res.status(201).json({
-                            message: "Class added successfully",
-                            created_class: createdClass
-                        })
-                    })
-                    .catch(error => {
-                        res.status(500).json({
-                            message: "Creating a class failed!"
-                        });
-                    });
-            }
+        class_session: req.body.class_session,
+        //begins calling the get_end_date function 
+        date_end : class_common.get_class_end_date(req.body.date_start,req.body.total_sessions,req.body.class_session),
+        //ends
+        student_list: req.body.student_list,
+        //slots management - calculation
+        current_total_students: req.body.student_list.length,
+        remaining_slots: req.body.slots - req.body.student_list.length
+    });
+    classModel
+        .save()
+        .then(createdClass => {
+            res.status(201).json({
+                message: "Class added successfully",
+                created_class: createdClass
+            })
         })
         .catch(error => {
-            res.status(501).json({
-                message: "Please check your inputs and try again!"
+            res.status(500).json({
+                message: "Creating a class failed!"
             });
         });
 }
