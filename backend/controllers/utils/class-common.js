@@ -88,7 +88,8 @@ function initDayMap() {
   }
   return map;
 }
-
+//call init day map
+var map = initDayMap();
 function is_day_in_class_session(date_so_far, class_session) {
   for (var i = 0, n = class_session.length; i < n; i++) {
     if (date_so_far.getDay() == map[class_session[i].day]) {
@@ -96,8 +97,7 @@ function is_day_in_class_session(date_so_far, class_session) {
     }
   }
 }
-//call init day map
-var map = initDayMap();
+
 function get_next_matched_day(date_so_far, class_session) {
   //repeat until the next matched day is found.
   do {
@@ -111,8 +111,8 @@ function get_next_matched_day(date_so_far, class_session) {
 }
 
 //for each start date, construct the next matched date with the day_session's value in class
-//if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
-//otherwise, 1 session is counted, set the date_so_far to this new date
+//if that new date matches the special_days'one, set the date_so_far to this new date then continue the loop to find the next date.
+//otherwise, 1 session is counted, also set the date_so_far to this new date
 
 exports.get_class_end_date = (start_date, total_session, class_session) => {
   bubble_sort(special_days);
@@ -130,21 +130,24 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
     total_session--;
     date_so_far = exact_start_date;
   }
-
+  
   //enter the loop for the remaining days.
   while (total_session != 0) {
     //dynamically pass the current date as argument
+
     date_so_far = get_next_matched_day(date_so_far, class_session);
 
     //if the date is not in special_days list
     //it takes 1 session
-    if (
-      !binary_search_in_dates(date_so_far, special_days, 0, special_days.length)
-    ) {
+    if (!binary_search_in_dates(date_so_far, special_days, 0, special_days.length)) {
       //testing
       console.log(date_so_far);
       //
       total_session--;
+    }
+    else{
+      //save the initially_passed date_so_far each time the function is called, to check against the next suitable date that if these 2 dates have day2.month - day1.month = 1
+
     }
   }
   //if the while loop ends, total_session will be equal to 0
