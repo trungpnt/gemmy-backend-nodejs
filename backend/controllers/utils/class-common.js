@@ -21,6 +21,10 @@ specialDaysQuery
     console.log("Fetching special days failed!");
   });
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function bubble_sort(dates) {
   await sleep(3000);
   dates = special_days;
@@ -85,19 +89,23 @@ function initDayMap() {
   return map;
 }
 
+function is_day_in_class_session(date_so_far, class_session) {
+  for (var i = 0, n = class_session.length; i < n; i++) {
+    if (date_so_far.getDay() == map[class_session[i].day]) {
+      return true;
+    }
+  }
+}
 //call init day map
 var map = initDayMap();
 function get_next_matched_day(date_so_far, class_session) {
-  let numeric_day = -1;
+  //repeat until the next matched day is found.
   do {
     //find next date's value ( +1) and reassign to the same date_so_far variable
     date_so_far.setDate(date_so_far.getDate() + 1);
-
-    for (var i = 0, n = class_session.length; i < n; i++) {
-      numeric_day = map[class_session[i].day];
-      if (date_so_far.getDay() == numeric_day) {
-        return date_so_far;
-      }
+    //check against class sessions
+    if (is_day_in_class_session(date_so_far, class_session)) {
+      return date_so_far;
     }
   } while (true);
 }
@@ -106,29 +114,28 @@ function get_next_matched_day(date_so_far, class_session) {
 //if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
 //otherwise, 1 session is counted, set the date_so_far to this new date
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 exports.get_class_end_date = (start_date, total_session, class_session) => {
   bubble_sort(special_days);
-  //start date takes 1 session
-  total_session--;
-  condition_decisor = 0;
+
   //initilize JS Date object
   let iso_start_date = new Date(start_date);
-
-  
-
   let date_so_far;
+
+  //separately handle the first inputted date
+  //does it fall within class sessions?
+  if (is_day_in_class_session(iso_start_date, class_session)) {
+    total_session--;
+  } else {
+    exact_start_date = get_next_matched_day(iso_start_date, class_session);
+    total_session--;
+    date_so_far = exact_start_date;
+  }
+
+  //enter the loop for the remaining days.
   while (total_session != 0) {
-    if (condition_decisor == 0) {
-      //for the first time this loop is triggered, calculate the next date given start_date
-      date_so_far = get_next_matched_day(iso_start_date, class_session);
-      condition_decisor = 1;
-    } else {
-      //any other time, dynamically pass the current date as argument
-      date_so_far = get_next_matched_day(date_so_far, class_session);
-    }
+    //dynamically pass the current date as argument
+    date_so_far = get_next_matched_day(date_so_far, class_session);
+
     //if the date is not in special_days list
     //it takes 1 session
     if (
@@ -136,11 +143,12 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
     ) {
       //testing
       console.log(date_so_far);
+      //
       total_session--;
     }
   }
   //if the while loop ends, total_session will be equal to 0
-  //date_so_far now takes the last study date
+  //date_so_far now takes the last date as output
   console.log(date_so_far.getDay());
   return date_so_far;
 };
