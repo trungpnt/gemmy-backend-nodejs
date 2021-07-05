@@ -18,12 +18,11 @@ specialDaysQuery
     });
   })
   .catch((error) => {
-    console.log("Fetching special days failed!"); 
+    console.log("Fetching special days failed!");
   });
 
-
-function bubble_sort(dates) {
-  //await sleep(5000);
+async function bubble_sort(dates) {
+  await sleep(3000);
   dates = special_days;
   flag = false;
   var n = dates.length;
@@ -62,24 +61,32 @@ function binary_search_in_dates(date_to_find, dates, low, high) {
 
 //this function will return the numeric value for the week day
 //Sun - Sar <=> 0 - 6
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-function get_numeric_given_day_in_week(given_day) {
-  for (var i = 0, n = days.length; i < n; i++) {
-    if (given_day === days[i]) {
-      //return the numeric representation of given_day
-      return i;
-    }
+// for (var i = 0, n = days.length; i < n; i++) {
+//   if (given_day === days[i]) {
+//     //return the numeric representation of given_day
+//     return i;
+//   }
+// }
+
+function initDayMap() {
+  var map = {};
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  for (let i = 0, n = days.length; i < n; i++) {
+    map[days[i]] = i;
   }
+  return map;
 }
 
+//call init day map
+var map = initDayMap();
 function get_next_matched_day(date_so_far, class_session) {
   let numeric_day = -1;
   do {
@@ -87,7 +94,7 @@ function get_next_matched_day(date_so_far, class_session) {
     date_so_far.setDate(date_so_far.getDate() + 1);
 
     for (var i = 0, n = class_session.length; i < n; i++) {
-      numeric_day = get_numeric_given_day_in_week(class_session[i].day);
+      numeric_day = map[class_session[i].day];
       if (date_so_far.getDay() == numeric_day) {
         return date_so_far;
       }
@@ -102,14 +109,15 @@ function get_next_matched_day(date_so_far, class_session) {
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-exports.get_class_end_date =  (start_date, total_session, class_session) => {
-  
+exports.get_class_end_date = (start_date, total_session, class_session) => {
   bubble_sort(special_days);
   //start date takes 1 session
   total_session--;
   condition_decisor = 0;
   //initilize JS Date object
   let iso_start_date = new Date(start_date);
+
+  
 
   let date_so_far;
   while (total_session != 0) {
@@ -126,10 +134,13 @@ exports.get_class_end_date =  (start_date, total_session, class_session) => {
     if (
       !binary_search_in_dates(date_so_far, special_days, 0, special_days.length)
     ) {
+      //testing
+      console.log(date_so_far);
       total_session--;
     }
   }
   //if the while loop ends, total_session will be equal to 0
   //date_so_far now takes the last study date
+  console.log(date_so_far.getDay());
   return date_so_far;
 };

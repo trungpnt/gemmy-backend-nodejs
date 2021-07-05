@@ -15,7 +15,7 @@ const studentSchema = new mongoose.Schema({
 });
 
 const classSchema = mongoose.Schema({
-
+    
     class_name: { type: String, required: true },
     class_code: { type: String, required: true },
     class_level: {type: String, required: true},
