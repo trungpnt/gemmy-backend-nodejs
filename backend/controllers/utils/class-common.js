@@ -130,7 +130,7 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
     total_session--;
     date_so_far = exact_start_date;
   }
-  
+
   //enter the loop for the remaining days.
   while (total_session != 0) {
     //dynamically pass the current date as argument
@@ -145,10 +145,10 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
       //
       total_session--;
     }
-    else{
-      //save the initially_passed date_so_far each time the function is called, to check against the next suitable date that if these 2 dates have day2.month - day1.month = 1
-
-    }
+    // else{
+    //   //save the initially_passed date_so_far each time the function is called, to check against the next suitable date that if these 2 dates have day2.month - day1.month = 1
+      
+    // }
   }
   //if the while loop ends, total_session will be equal to 0
   //date_so_far now takes the last date as output
