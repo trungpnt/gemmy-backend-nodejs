@@ -8,7 +8,8 @@ const userSchema = mongoose.Schema({
   email :{type:String,require:true, unique: true },
   facebook :{type:String,require:true},
   bank_account_number: { type: String, required: true },
-  assigned_classes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class", required: true }],
+  assigned_classes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class", required: false }],
+  account_id:{ type: mongoose.Schema.Types.ObjectId, ref: "Account", required: true }
 });
 
 userSchema.plugin(uniqueValidator);

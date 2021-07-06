@@ -6,17 +6,15 @@ const router = express.Router();
 
 const UserController = require("../controllers/user");
 
-router.post("", checkAuth, UserController.createUser);
-
-router.put("/:id", checkAuth, UserController.updateUser);
+router.put("/:id", UserController.updateUser);
 
 router.get("", UserController.getUsers);
 
-router.get("/:id", UserController.getUsers);
+router.get("/:id", UserController.getUser);
 
 router.delete("/:id", checkAuth, UserController.deleteUser);
 
-router.post("/signup", checkAuth, UserController.createUser);
+router.post("/signup", UserController.createUser);
 
 
 module.exports = router;
