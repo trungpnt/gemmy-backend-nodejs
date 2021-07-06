@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 //role_name example : 'super_admin', 'user'
 const rolesSchema = mongoose.Schema({
   role_name: { type: String, required: true },
-  description: {type: String, require: false},
+  description: {type: String, require: true},
   permissions:[{ type: String, required: true }]
 });
 

@@ -1,6 +1,8 @@
 const Account = require("../models/account");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
+//temporary can not use
 exports.createAccount = (req, res, next) => {
   bcrypt
     .hash(req.body.password, 10)
@@ -27,6 +29,49 @@ exports.createAccount = (req, res, next) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+};
+
+exports.loginAccount = (req, res, next) => {
+  let fetchedAccount;
+  Account.findOne({ username: req.body.username })
+    .populate("user_roles")
+    .then((account) => {
+      if (!account) {
+        return res.status(401).json({
+          message: "Auth failed",
+        });
+      }
+      fetchedAccount = account;
+      return bcrypt.compare(req.body.password, account.password);
+    })
+    .then((result) => {
+      if (!result) {
+        return res.status(401).json({
+          message: "Auth failed",
+        });
+      }
+      //add more logic for admin_role
+      const token = jwt.sign(
+        {
+          email: fetchedAccount.email,
+          userId: fetchedAccount._id,
+          user_roles: fetchedAccount.user_roles,
+        },
+        "securesecuresecuresecuresecuresecuresecure",
+        { expiresIn: "1h" }
+      );
+      res.status(200).json({
+        token: token,
+        expiresIn: 3600,
+        accountId: fetchedAccount._id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(401).json({
+        message: "Invalid authentication credentials!",
+      });
     });
 };
 
@@ -84,29 +129,33 @@ exports.createAccount = (req, res, next) => {
 //         });
 // };
 
-// exports.updateAccount = (req, res, next) => {
-
-//     const account = new Account({
-//         _id: req.body.id,
-//         title: req.body.title,
-//         content: req.body.content,
-
-//         creator: req.userData.userId
-//     });
-//     Account.updateOne({ _id: req.params.id, creator: req.userData.userId }, account)
-//         .then(result => {
-//             if (result.n > 0) {
-//                 res.status(200).json({ message: "Update successful!" });
-//             } else {
-//                 res.status(401).json({ message: "Not authorized!" });
-//             }
-//         })
-//         .catch(error => {
-//             res.status(500).json({
-//                 message: "Couldn't udpate account!"
-//             });
-//         });
-// };
+exports.updateAccount = (req, res, next) => {
+  const account = new Account({
+    _id: req.body.id,
+    username: req.body.username,
+    password: req.body.content,
+  });
+  bcrypt
+    .hash(req.body.password, 10)
+    .then((result) => {
+      account.password = result;
+    })
+    .then(() => {
+      Account.updateOne({ _id: req.params.id }, account)
+        .then((result) => {
+          if (result.n > 0) {
+            res.status(200).json({ message: "Update successful!" });
+          } else {
+            res.status(401).json({ message: "Not authorized!" });
+          }
+        })
+        .catch((error) => {
+          res.status(500).json({
+            message: "Couldn't udpate account!",
+          });
+        });
+    });
+};
 
 // exports.getAccounts = (req, res, next) => {
 //     const pageSize = +req.query.pagesize;
@@ -136,35 +185,35 @@ exports.createAccount = (req, res, next) => {
 //         });
 // };
 
-// exports.getAccount = (req, res, next) => {
-//     Account.findById(req.params.id)
-//         .then(account => {
-//             if (account) {
-//                 res.status(200).json(account);
-//             } else {
-//                 res.status(404).json({ message: "Account not found!" });
-//             }
-//         })
-//         .catch(error => {
-//             res.status(500).json({
-//                 message: "Fetching account failed!"
-//             });
-//         });
-// };
+exports.getAccount = (req, res, next) => {
+  Account.findById(req.params.id)
+    .then((account) => {
+      if (account) {
+        res.status(200).json(account);
+      } else {
+        res.status(404).json({ message: "Account not found!" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Fetching account failed!",
+      });
+    });
+};
 
-// exports.deleteAccount = (req, res, next) => {
-//     Account.deleteOne({ _id: req.params.id, creator: req.userData.userId })
-//         .then(result => {
-//             console.log(result);
-//             if (result.n > 0) {
-//                 res.status(200).json({ message: "Deletion successful!" });
-//             } else {
-//                 res.status(401).json({ message: "Not authorized!" });
-//             }
-//         })
-//         .catch(error => {
-//             res.status(500).json({
-//                 message: "Deleting accounts failed!"
-//             });
-//         });
-// };
+exports.deleteAccount = (req, res, next) => {
+  Account.deleteOne({ _id: req.params.id, creator: req.userData.userId })
+    .then((result) => {
+      console.log(result);
+      if (result.n > 0) {
+        res.status(200).json({ message: "Deletion successful!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Deleting accounts failed!",
+      });
+    });
+};
