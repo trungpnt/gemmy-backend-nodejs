@@ -5,6 +5,7 @@ const Account = require("../models/account");
 
 const mongoose = require("mongoose");
 
+//create User + account
 exports.createUser = (req, res, next) => {
   let fetched_account_id;
   const user = new User({
