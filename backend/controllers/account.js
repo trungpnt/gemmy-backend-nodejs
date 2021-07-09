@@ -54,7 +54,7 @@ exports.loginAccount = (req, res, next) => {
       //add more logic for admin_role
       const token = jwt.sign(
         {
-          email: fetchedAccount.email,
+          username: fetchedAccount.username,
           userId: fetchedAccount._id,
           user_roles: fetchedAccount.user_roles,
         },
