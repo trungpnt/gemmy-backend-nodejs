@@ -10,6 +10,7 @@ const labelRoutes = require("./routes/label");
 const studentRoutes = require("./routes/student");
 const specialDayRoutes = require("./routes/special_days");
 const accountRoutes = require("./routes/account");
+const roleRoutes = require("./routes/role");
 
 const app = express();
 
@@ -55,5 +56,7 @@ app.use("/api/student", studentRoutes);
 app.use("/api/special-days", specialDayRoutes);
 
 app.use("/api/account", accountRoutes);
+
+app.use("/api/role",roleRoutes);
 
 module.exports = app;

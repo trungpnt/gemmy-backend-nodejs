@@ -4,16 +4,25 @@ const AccountController = require("../controllers/account");
 
 const checkAuth = require("../middleware/check-auth");
 
+const permit = require("../middleware/authorization");
+
 const router = express.Router();
 
-router.post("", checkAuth, AccountController.createAccount);
+router.post("/login", AccountController.loginAccount);
 
-router.put("/:id", checkAuth, AccountController.updateAccount);
+router.post("", checkAuth , permit('account_write') ,  AccountController.createAccount)
 
-router.get("", AccountController.getAccounts);
+router.put("/:id", checkAuth , permit('account_write') , AccountController.updateAccount);
 
-router.get("/:id", AccountController.getAccount);
+router.delete("/:id", checkAuth , permit('account_write') , checkAuth, AccountController.deleteAccount);
 
-router.delete("/:id", checkAuth, AccountController.deleteAccount);
+
+
+// router.get("", RoleController.getRoles);
+
+
+
+
+
 
 module.exports = router;
