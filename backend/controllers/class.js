@@ -4,6 +4,7 @@ const specialDayController = require("./special_days");
 
 const class_common = require("../controllers/utils/class-common");
 
+//copy to UI
 function genClassCode(class_level, class_label, class_name) {
   var today = new Date();
   //2145MARApreIelts
@@ -11,10 +12,6 @@ function genClassCode(class_level, class_label, class_name) {
   var month = today.toLocaleString("default", { month: "short" }).toUpperCase();
   return "".concat(year_digit, class_level, month, class_label, class_name);
 }
-
-// function sleep(ms) {
-//   return new Promise((resolve) => setTimeout(resolve, ms));
-// }
 
 exports.createClass =  (req, res, next) => {
   var check_class_code = genClassCode(

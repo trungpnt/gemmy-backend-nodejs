@@ -145,6 +145,7 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
       //
       total_session--;
     }
+    //detect one date which month_new - month_old  > 1 => trigger pop UI???, == 0 => repeat
     // else{
     //   //save the initially_passed date_so_far each time the function is called, to check against the next suitable date that if these 2 dates have day2.month - day1.month = 1
       
