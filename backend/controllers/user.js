@@ -17,7 +17,7 @@ exports.createUser = (req, res, next) => {
     assigned_classes: req.body.assigned_classes,
     account_id: null,
   });
-
+  
   let checkCollectionAccountExist = false;
   let checkCollectionUserExist = false;
 
