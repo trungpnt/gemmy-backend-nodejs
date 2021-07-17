@@ -16,8 +16,6 @@ router.put("/:id", checkAuth , permit('account_write') , AccountController.updat
 
 router.delete("/:id", checkAuth , permit('account_write') , checkAuth, AccountController.deleteAccount);
 
-
-
 // router.get("", RoleController.getRoles);
 
 

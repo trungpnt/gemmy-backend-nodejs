@@ -15,15 +15,14 @@ module.exports = (req, res, next) => {
     //   role: decodedToken.user_roles,
     // };
 
-    
-
     //check if user have multiple role ??
-    if (decodedToken.user_roles.length === 1) {
+    let roleLength = decodedToken.user_roles.length;
+    if (roleLength === 1) {
       req.userPermissions = {
         permissions: decodedToken.user_roles[0].permissions,
       };
       req.user_role = decodedToken.user_roles[0].role_name;
-    } else if (decodedToken.user_roles.length > 1) {
+    } else if (roleLength > 1) {
       console.log(222222222222)
       const permissionsSet = new Set();
       const user_role = [];

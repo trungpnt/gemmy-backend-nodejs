@@ -1,8 +1,31 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const Account = require("../models/account");
-
+const Role = require("../models/role");
 const mongoose = require("mongoose");
+
+/**
+ * @author culi_dev 
+ * @param [] roleName 
+ * @return a list of Role Ids
+ */
+function findRolesByNames(roleName){
+  let rolesFound = [];
+  for(var i = 0, n = roleName.length; i < n;i++){
+    Role.findOne({role_name : roleName[i]})
+    .then((role_found) => {
+      if (role_found) {
+        rolesFound.add(role_found);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      return [{
+        message: "Fetching Role failed!",
+      }];
+    });
+  }
+}
 
 //create User + account
 exports.createUser = (req, res, next) => {
@@ -78,10 +101,11 @@ exports.createUser = (req, res, next) => {
       bcrypt
         .hash(req.body.password, 10)
         .then((hash) => {
+          const roleFound = findRolesByNames(req.body.role_name);
           const account = new Account({
             username: req.body.username,
             password: hash,
-            user_roles: req.body.roles,
+            user_roles: roleFound,
           });
           account
             .save()

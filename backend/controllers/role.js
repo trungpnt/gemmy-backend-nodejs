@@ -49,7 +49,25 @@ exports.getRoles = (req, res, next) => {
     });
 };
 
-exports.getRole = (req, res, next) => {
+exports.getRoleByName = (req, res, next) => {
+  Role.findOne({role_name: req.params.role_name})
+    .then((role_found) => {
+      if (role_found) {
+        res.status(200).json(role_found);
+      } else {
+        res.status(404).json({ message: "Role not found!" });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        message: "Fetching Role failed!",
+      });
+    });
+};
+
+exports.getRoleById = (req, res, next) => {
+
   Role.findById(req.params.id)
     .then((role_found) => {
       if (role_found) {
@@ -65,6 +83,9 @@ exports.getRole = (req, res, next) => {
       });
     });
 };
+
+
+
 
 exports.updateRole = (req, res, next) => {
   Role.findById(req.params.id)

@@ -52,8 +52,7 @@ exports.loginAccount = (req, res, next) => {
         });
       }
       //add more logic for admin_role
-      const token = jwt.sign(
-        {
+      const token = jwt.sign({
           username: fetchedAccount.username,
           userId: fetchedAccount._id,
           user_roles: fetchedAccount.user_roles,
