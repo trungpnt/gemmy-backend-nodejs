@@ -12,7 +12,7 @@ function sleep(ms) {
 /**
  * @author culi_dev
  * @param [] roleName
- * @return a list of Role Ids
+ * @return a list of Roles
  */
 function findRolesByNames(roleName) {
   let rolesFound = [];
@@ -111,7 +111,7 @@ exports.createUser = async (req, res, next) =>  {
         //findRolesByNames is still buggy
         let rolesFound = findRolesByNames(req.body.role_name);
         //sleep this fucking rolesFound
-        await sleep(3000);
+        await sleep(1000);
         const account = new Account({
           username: req.body.username,
           password: hash,
