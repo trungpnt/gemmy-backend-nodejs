@@ -3,32 +3,37 @@ const User = require("../models/user");
 const Account = require("../models/account");
 const Role = require("../models/role");
 const mongoose = require("mongoose");
+const async = require("async");
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 /**
- * @author culi_dev 
- * @param [] roleName 
+ * @author culi_dev
+ * @param [] roleName
  * @return a list of Role Ids
  */
-function findRolesByNames(roleName){
+function findRolesByNames(roleName) {
   let rolesFound = [];
-  for(var i = 0, n = roleName.length; i < n;i++){
-    Role.findOne({role_name : roleName[i]})
-    .then((role_found) => {
-      if (role_found) {
-        rolesFound.add(role_found);
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      return [{
-        message: "Fetching Role failed!",
-      }];
-    });
+  for (var i = 0, n = roleName.length; i < n; i++) {
+    Role.findOne({ role_name: roleName[i] })
+      .then((found) => {
+        if (found) {
+          rolesFound.push(found);
+        } else {
+          console.log("wtf is this shitttt");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
+  return rolesFound;
 }
 
 //create User + account
-exports.createUser = (req, res, next) => {
+exports.createUser = async (req, res, next) =>  {
   let fetched_account_id;
   const user = new User({
     full_name: req.body.full_name,
@@ -40,7 +45,7 @@ exports.createUser = (req, res, next) => {
     assigned_classes: req.body.assigned_classes,
     account_id: null,
   });
-  
+
   let checkCollectionAccountExist = false;
   let checkCollectionUserExist = false;
 
@@ -71,86 +76,91 @@ exports.createUser = (req, res, next) => {
 
   let checkUsernameExist = false;
   let checkEmailExist = false;
-  setTimeout(() => {
-    console.log(checkCollectionAccountExist);
-    console.log(checkCollectionUserExist);
+  console.log(checkCollectionAccountExist);
+  console.log(checkCollectionUserExist);
 
-    //check email exist in user
-    if (checkCollectionUserExist) {
-      User.findOne({ email: req.body.email }).then((email) => {
-        if (email) {
-          checkEmailExist = true;
-        }
-      });
-    }
-
-    //check username exist in account
-    if (checkCollectionAccountExist) {
-      Account.findOne({ username: req.body.username }).then((account) => {
-        if (account) {
-          checkUsernameExist = true;
-        }
-      });
-    }
-  }, 300);
-
-  setTimeout(() => {
-    console.log(checkEmailExist);
-    console.log(checkUsernameExist);
-    if (checkUsernameExist === false && checkEmailExist === false) {
-      bcrypt
-        .hash(req.body.password, 10)
-        .then((hash) => {
-          const roleFound = findRolesByNames(req.body.role_name);
-          const account = new Account({
-            username: req.body.username,
-            password: hash,
-            user_roles: roleFound,
-          });
-          account
-            .save()
-            .then((result) => {
-              fetched_account_id = result._id;
-              res.status(201).json({
-                message: "Account created!",
-                result: result,
-              });
-            })
-            .then(() => {
-              user.account_id = fetched_account_id;
-              user
-                .save()
-                .then((result) => {
-                  res.status(201).json({
-                    message: "User created!",
-                  });
-                })
-                .catch((err) => {
-                  res.status(500).json({
-                    message: "User create fail !",
-                    result: err,
-                  });
-                  console.log(err);
-                });
-            })
-            .catch((err) => {
-              res.status(500).json({
-                message: "Account create fail !",
-              });
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      if (checkUsernameExist || checkEmailExist) {
-        res.status(409).json({
-          message: "Username or email already created!",
-        });
+  //check email exist in user
+  if (checkCollectionUserExist) {
+    User.findOne({ email: req.body.email }).then((email) => {
+      if (email) {
+        checkEmailExist = true;
+      } else {
+        callback(null);
       }
+    });
+  }
+
+  //check username exist in account
+  if (checkCollectionAccountExist) {
+    Account.findOne({ username: req.body.username }).then((account) => {
+      if (account) {
+        checkUsernameExist = true;
+      } else {
+        callback(null);
+      }
+    });
+  }
+
+  //begins
+  console.log(checkEmailExist);
+  console.log(checkUsernameExist);
+  if (checkUsernameExist === false && checkEmailExist === false) {
+    bcrypt
+      .hash(req.body.password, 10)
+      .then( async (hash) => {
+        //findRolesByNames is still buggy
+        let rolesFound = findRolesByNames(req.body.role_name);
+        //sleep this fucking rolesFound
+        await sleep(3000);
+        const account = new Account({
+          username: req.body.username,
+          password: hash,
+          // user_roles: roleFound,
+          user_roles: rolesFound,
+        });
+        account
+          .save()
+          .then((result) => {
+            fetched_account_id = result._id;
+            res.status(201).json({
+              message: "Account created!",
+              result: result,
+            });
+          })
+          .then(() => {
+            user.account_id = fetched_account_id;
+            user
+              .save()
+              .then((result) => {
+                res.status(201).json({
+                  message: "User created!",
+                });
+              })
+              .catch((err) => {
+                res.status(500).json({
+                  message: "User create fail !",
+                  result: err,
+                });
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              message: "Account create fail !",
+            });
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    if (checkUsernameExist || checkEmailExist) {
+      res.status(409).json({
+        message: "Username or email already created!",
+      });
     }
-  }, 500);
+  }
 };
 
 exports.getUsers = (req, res, next) => {
