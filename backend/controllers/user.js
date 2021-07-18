@@ -81,7 +81,8 @@ exports.createUser = async (req, res, next) =>  {
 
   //check email exist in user
   if (checkCollectionUserExist) {
-    User.findOne({ email: req.body.email }).then((email) => {
+    User.findOne({ email: req.body.email })
+    .then((email) => {
       if (email) {
         checkEmailExist = true;
       } else {
@@ -89,10 +90,11 @@ exports.createUser = async (req, res, next) =>  {
       }
     });
   }
-
+  await sleep(2000);
   //check username exist in account
   if (checkCollectionAccountExist) {
-    Account.findOne({ username: req.body.username }).then((account) => {
+    Account.findOne({ username: req.body.username })
+    .then((account) => {
       if (account) {
         checkUsernameExist = true;
       } else {
@@ -100,6 +102,7 @@ exports.createUser = async (req, res, next) =>  {
       }
     });
   }
+  await sleep(2000);
 
   //begins
   console.log(checkEmailExist);
