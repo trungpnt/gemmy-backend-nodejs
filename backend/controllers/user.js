@@ -85,9 +85,7 @@ exports.createUser = async (req, res, next) =>  {
     .then((email) => {
       if (email) {
         checkEmailExist = true;
-      } else {
-        callback(null);
-      }
+      } 
     });
   }
   await sleep(2000);
@@ -97,9 +95,7 @@ exports.createUser = async (req, res, next) =>  {
     .then((account) => {
       if (account) {
         checkUsernameExist = true;
-      } else {
-        callback(null);
-      }
+      } 
     });
   }
   await sleep(2000);
@@ -111,7 +107,6 @@ exports.createUser = async (req, res, next) =>  {
     bcrypt
       .hash(req.body.password, 10)
       .then( async (hash) => {
-        //findRolesByNames is still buggy
         let rolesFound = findRolesByNames(req.body.role_name);
         //sleep this fucking rolesFound
         await sleep(1000);

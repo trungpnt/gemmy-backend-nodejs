@@ -1,16 +1,20 @@
-//Fetch list of special_days
-//Bubble sort the list
-//Get startdate, total sessions of class
-//for each start date, construct the next matched date with the day_session's value in class
-//if that new date matches the special_days'one, set the date_so_far to this new date then continue to repeat
-//otherwise, 1 session is counted, set the date_so_far to this new date
+/**
+ * @author culi_dev
+** @function fetch_list_of_special_days - fetch a list of special days using SpecialDays Model  
+** @function bubble_sort(@param fetch_list_of_special_days)
+** for each start date, construct the next matched date with the day_session's value in class
+** if that new date matches the special_days'one, set the date_so_far to this new date then continue to repea
+** otherwise, 1 session is counted, set the date_so_far to this new date
+ */
 
 const SpecialDays = require("../../models/special_days");
 
 const specialDaysQuery = SpecialDays.find();
 let special_days;
 
-//find all special days, exclude _id fields
+/**
+ * @returns all special days []
+ */
 specialDaysQuery
   .then((specialDays) => {
     special_days = specialDays.map((specialDay) => {
@@ -21,10 +25,19 @@ specialDaysQuery
     console.log("Fetching special days failed!");
   });
 
+/**
+ * 
+ * @param {} ms 
+ * @returns Promise instance  
+ */
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/**
+ * @param {*} dates 
+ * sort special days in ascending order
+ */
 async function bubble_sort(dates) {
   await sleep(3000);
   dates = special_days;
@@ -44,7 +57,14 @@ async function bubble_sort(dates) {
     }
   }
 }
-
+/**
+ * 
+ * @param {*} date_to_find 
+ * @param {*} dates 
+ * @param {*} low 
+ * @param {*} high 
+ * @returns if date_to_find is found
+ */
 function binary_search_in_dates(date_to_find, dates, low, high) {
   if (low > high) {
     return false;
@@ -60,18 +80,10 @@ function binary_search_in_dates(date_to_find, dates, low, high) {
   }
 }
 
-//add 1 to current day
-//constantly check if this day matches 1 element in the day_session list
-
-//this function will return the numeric value for the week day
-//Sun - Sar <=> 0 - 6
-// for (var i = 0, n = days.length; i < n; i++) {
-//   if (given_day === days[i]) {
-//     //return the numeric representation of given_day
-//     return i;
-//   }
-// }
-
+/**
+ * 
+ * @returns a map 
+ */
 function initDayMap() {
   var map = {};
   let days = [
@@ -88,8 +100,17 @@ function initDayMap() {
   }
   return map;
 }
-//call init day map
+/**
+ * initDayMap()
+ */
 var map = initDayMap();
+
+/**
+ * 
+ * @param {*} date_so_far 
+ * @param {*} class_session 
+ * @returns 
+ */
 function is_day_in_class_session(date_so_far, class_session) {
   for (var i = 0, n = class_session.length; i < n; i++) {
     if (date_so_far.getDay() == map[class_session[i].day]) {
@@ -98,31 +119,47 @@ function is_day_in_class_session(date_so_far, class_session) {
   }
 }
 
+/**
+ * this function repeats until the next matched day is found.
+ * date_so_far gets updated at every iteration 
+ * validate against the class session'
+ * @param {*} date_so_far 
+ * @param {*} class_session 
+ * @returns the next day that matches the class session's  
+ */
 function get_next_matched_day(date_so_far, class_session) {
-  //repeat until the next matched day is found.
+  
   do {
-    //find next date's value ( +1) and reassign to the same date_so_far variable
     date_so_far.setDate(date_so_far.getDate() + 1);
-    //check against class sessions
     if (is_day_in_class_session(date_so_far, class_session)) {
       return date_so_far;
     }
   } while (true);
 }
 
-//for each start date, construct the next matched date with the day_session's value in class
-//if that new date matches the special_days'one, set the date_so_far to this new date then continue the loop to find the next date.
-//otherwise, 1 session is counted, also set the date_so_far to this new date
 
+/**
+ * for each date, construct the next matched date with the day_session's value in class
+ * if that new date matches the special_days'one, set the date_so_far to this new date then continue the loop to find the next date
+ * otherwise, 1 session is counted, also set the date_so_far to this new date
+ * @param {*} start_date 
+ * @param {*} total_session 
+ * @param {*} class_session 
+ * @returns end_date
+ */
 exports.get_class_end_date = (start_date, total_session, class_session) => {
   bubble_sort(special_days);
 
-  //initilize JS Date object
+  /**
+   * initialize Javascript date object 
+   */
   let iso_start_date = new Date(start_date);
   let date_so_far;
 
-  //separately handle the first inputted date
-  //does it fall within class sessions?
+  /**
+   * separately handle the first inputted date
+   * does it fall within class sessions?
+   */
   if (is_day_in_class_session(iso_start_date, class_session)) {
     total_session--;
   } else {
@@ -131,18 +168,15 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
     date_so_far = exact_start_date;
   }
 
-  //enter the loop for the remaining days.
+  /**
+   * enter the loop for the remaining days.
+   */
   while (total_session != 0) {
-    //dynamically pass the current date as argument
-
     date_so_far = get_next_matched_day(date_so_far, class_session);
-
-    //if the date is not in special_days list
-    //it takes 1 session
+    /**
+     * if the date is not in special_days list, it takes 1 session
+     */
     if (!binary_search_in_dates(date_so_far, special_days, 0, special_days.length)) {
-      //testing
-      console.log(date_so_far);
-      //
       total_session--;
     }
     //detect one date which month_new - month_old  > 1 => trigger pop UI???, == 0 => repeat
@@ -151,8 +185,13 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
       
     // }
   }
-  //if the while loop ends, total_session will be equal to 0
-  //date_so_far now takes the last date as output
+  /**
+   * when the while loop ends, total_session will be equal to 0
+   * date_so_far now takes the last date as output
+   */
   console.log(date_so_far.getDay());
   return date_so_far;
 };
+
+
+//
