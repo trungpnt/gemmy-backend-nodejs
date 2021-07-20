@@ -179,16 +179,12 @@ exports.get_class_end_date = (start_date, total_session, class_session) => {
     if (!binary_search_in_dates(date_so_far, special_days, 0, special_days.length)) {
       total_session--;
     }
-    //detect one date which month_new - month_old  > 1 => trigger pop UI???, == 0 => repeat
-    // else{
-    //   //save the initially_passed date_so_far each time the function is called, to check against the next suitable date that if these 2 dates have day2.month - day1.month = 1
-      
-    // }
+    
   }
   /**
    * when the while loop ends, total_session will be equal to 0
    * date_so_far now takes the last date as output
-   */
+   */ 
   console.log(date_so_far.getDay());
   return date_so_far;
 };

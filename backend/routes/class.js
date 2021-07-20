@@ -10,6 +10,8 @@ const router = express.Router();
 
 router.post("", /*checkAuth*/ ClassController.createClass);
 
+router.post("/end-date", ClassController.getOriginalEndDate);
+
 router.put("/:id", checkAuth , permit('class_write') ,ClassController.updateClass);
 
 router.patch("/:id", checkAuth , permit('class_write'),ClassController.updateClass);

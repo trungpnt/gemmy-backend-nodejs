@@ -4,7 +4,13 @@ const specialDayController = require("./special_days");
 
 const class_common = require("../controllers/utils/class-common");
 
-//copy to UI
+/**
+ * COPY THIS TO UI code => @author caocon
+ * @param {*} class_level 
+ * @param {*} class_label 
+ * @param {*} class_name 
+ * @returns 
+ */
 function genClassCode(class_level, class_label, class_name) {
   var today = new Date();
   //2145MARApreIelts
@@ -12,6 +18,15 @@ function genClassCode(class_level, class_label, class_name) {
   var month = today.toLocaleString("default", { month: "short" }).toUpperCase();
   return "".concat(year_digit, class_level, month, class_label, class_name);
 }
+
+exports.getOriginalEndDate = (req, res, next) => {
+  let calc_date_end = class_common.get_class_end_date(
+    req.body.date_start,
+    req.body.total_sessions,
+    req.body.class_session
+  );
+
+} 
 
 exports.createClass =  (req, res, next) => {
   var check_class_code = genClassCode(
